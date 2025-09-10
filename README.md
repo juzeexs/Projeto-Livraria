@@ -44,6 +44,8 @@ Gerenciamento de categorias ;
 Visualização de pedidos realizados;
 
 Relatórios de vendas .
+<hr>
+</hr>
 <strong>
 Tecnologias previstas:
 </strong>
