@@ -1,9 +1,9 @@
 # Projeto-Livraria
-
+<div>
 <strong>
 Nome do Projeto:
 </strong>
-
+</div>
   Livraria Virtual Nova Leitura
 
 Objetivo Geral:
