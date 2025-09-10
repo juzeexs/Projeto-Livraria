@@ -52,7 +52,7 @@ Visualização de pedidos realizados;
 Relatórios de vendas .
 <br>
 <br>
-<br>
+<hr>
 
 <strong>
 Tecnologias previstas:
