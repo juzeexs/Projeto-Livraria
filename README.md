@@ -10,6 +10,8 @@ Nome do Projeto:
 Objetivo Geral:
 </strong>
   Desenvolver um site de livraria online que ofereça aos usuários uma plataforma funcional, intuitiva e responsiva para a visualização, compra e pesquisa de livros, com foco em usabilidade, acessibilidade e segurança das informações.
+<br>
+
 <strong>
 Descrição do Projeto:
 </strong>
