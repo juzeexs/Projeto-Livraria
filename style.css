@@ -276,14 +276,17 @@ body {
 
 
 }
-
+/*subtitulo*/
 .subtitulo{
    
 
 }
 
+    /*copywriter*/
+.copywriter{
+    text-align: center ;
 
-
+}
 
 /* --- Chamada para Ação (CTA) e Botões --- */
 .cta-section {
@@ -721,3 +724,29 @@ body, body p, body h1, body h2, body h3 {
     overflow: hidden;
     aspect-ratio: 16 / 9; /* Mantém a proporção widescreen 16:9 */
 }
+
+
+.imput-assinatura{
+
+    width:500px ;
+    height: 40px;
+    border-radius:10px ;
+    border: 2px solid rgb(255, 0, 212);
+    background: transparent;     
+    color: white;
+}
+
+.imput-assinatura:hover{
+     box-shadow: 0 0 25px var(--cor-sombra-hover), 
+                0 15px 30px var(--cor-sombra-secundaria);
+   
+}
+
+.div-assinatura{
+    text-align: center;
+color: var(--cor-texto);
+
+
+}
+
+
