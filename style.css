@@ -5,6 +5,15 @@
     100% { background-position: 0% 50%; }
 }
 
+/* Nova animação mais rápida para o tema multicolor */
+@keyframes rainbowThemeChange {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 50% 100%; }
+    50% { background-position: 100% 50%; }
+    75% { background-position: 50% 0%; }
+    100% { background-position: 0% 50%; }
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -35,6 +44,32 @@
     --cor-sombra-secundaria: rgba(29, 0, 49, 0.6);
 }
 
+.blue-theme { /* Tema Azul */
+    --cor-fundo: #f0f6ff;
+    --cor-principal: #002536;
+    --cor-secundaria: #d8e6ff;
+    --cor-texto: #474747;
+    --cor-texto-secundario: #a0a0a0;
+    --cor-link-hover: #6edff6;
+    --cor-fundo-transicao: linear-gradient(90deg, #0b1f3c, #460075, #ffffff, #4d0157, #b30000);
+    --cor-gradiente-borda: linear-gradient(to right, #4dc1f5, #1c3258);
+    --cor-sombra-hover: rgb(77, 193, 245);
+    --cor-sombra-secundaria: rgba(28, 50, 88, 0.6);
+}
+
+.rainbow-theme { /* NOVO TEMA: Multicolor */
+    --cor-fundo: #0a0a0a;
+    --cor-principal: #e02f90; /* Inicia com a cor roxa/rosa */
+    --cor-secundaria: #1a1a1a;
+    --cor-texto: #ffffff;
+    --cor-texto-secundario: #a0a0a0;
+    --cor-link-hover: #e50914; /* Hover para a cor vermelha */
+    --cor-fundo-transicao: linear-gradient(90deg, #e50914, #9932cc, #e50914, #9932cc);
+    --cor-gradiente-borda: linear-gradient(to right, #e50914, #9932cc);
+    --cor-sombra-hover: rgba(229, 9, 20, 0.8);
+    --cor-sombra-secundaria: rgba(153, 50, 204, 0.6);
+}
+
 /* --- Estilos Gerais e Transições --- */
 body {
     background-color: var(--cor-fundo);
@@ -45,7 +80,7 @@ body {
 }
 
 /* Transições para variáveis CSS em todos os elementos que as utilizam */
-:root, .purple-theme {
+:root, .purple-theme, .blue-theme, .rainbow-theme {
     transition: 
         --cor-principal 0.7s ease-in-out,
         --cor-secundaria 0.7s ease-in-out,
@@ -80,6 +115,27 @@ body {
     transition: background 0.5s ease;
 }
 
+/* Sobrescreve a animação para o tema multicolor */
+.rainbow-theme .animated-navbar-bg {
+    animation: rainbowThemeChange 5s ease infinite; /* Tempo mais rápido */
+    background-size: 200% 200%; /* Gradiente mais compacto */
+}
+
+/* Adiciona também o efeito para a engrenagem (Offcanvas) */
+.offcanvas-header,
+.offcanvas-body {
+    background-color: var(--cor-fundo);
+    transition: background-color 0.5s ease;
+}
+
+/* Adiciona a animação de fundo ao offcanvas no tema multicolor */
+.rainbow-theme .offcanvas {
+    background: var(--cor-fundo-transicao);
+    background-size: 400% 400%;
+    animation: rainbowThemeChange 5s ease infinite;
+    transition: none; /* Desativa a transição suave para a animação */
+}
+
 .navbar-custom .navbar-brand {
     color: var(--cor-texto);
     font-family: 'Playfair Display', serif;
@@ -87,6 +143,10 @@ body {
     font-size: 1.8rem;
     z-index: 1;
     transition: color 0.5s ease;
+    /* --- INÍCIO DA MUDANÇA: Sombra Neon para o título --- */
+    text-shadow: 0 0 5px var(--cor-principal), 0 0 10px var(--cor-principal);
+    transition: color 0.5s ease, text-shadow 0.7s ease-in-out;
+    /* --- FIM DA MUDANÇA --- */
 }
 
 .navbar-custom .navbar-brand::after {
@@ -148,15 +208,21 @@ body {
     transition: background-image 0.5s ease;
 }
 
+/* Sobrescreve a animação de texto para o tema multicolor */
+.rainbow-theme .animated-lead-text {
+    animation: rainbowThemeChange 5s ease infinite;
+    background-size: 200% 100%;
+}
+
 /* --- Carrossel --- */
 .carousel {
     position: relative;
     padding-bottom: 40px;
 }
 
-/* Deixa o carrossel mais rápido */
+/* Deixa o carrossel mais suave */
 .carousel-item {
-    transition: transform 0.3s ease-in-out; 
+    transition: transform 0.6s ease-in-out; 
 }
 
 .carousel-indicators {
@@ -177,12 +243,23 @@ body {
     transition: background-color 0.5s ease;
 }
 
+/* --- CORREÇÃO: Proporção do Carrossel --- */
+#carrosselDestaques {
+    max-height: initial; 
+}
+
 #carrosselDestaques .carousel-inner {
     border-radius: 10px;
     overflow: hidden;
+    aspect-ratio: 16 / 9; 
 }
 
-.carousel-item img {
+#carrosselDestaques .carousel-item img {
+    height: 100%;
+    width: 100%;
+    /* --- INÍCIO DA MUDANÇA: Ajuste de imagem do carrossel --- */
+    object-fit: cover; /* A imagem preenche a área, cortando o excesso */
+    /* --- FIM DA MUDANÇA --- */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
@@ -571,6 +648,61 @@ body {
 .btn-cta:hover {
     background: linear-gradient(to right, var(--cor-principal), var(--cor-secundaria));
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(236, 236, 236, 0.5);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     color: var(--cor-texto);
+}
+
+
+/* Adicione este bloco de código ao seu arquivo style.css */
+
+.large-font {
+    font-size: 1.1em; /* 10% maior que o tamanho base */
+}
+
+/* Opcional: Efeito de transição suave */
+body, body p, body h1, body h2, body h3 {
+    transition: font-size 0.3s ease;
+}
+
+
+.horizontal-scroll-container {
+    display: flex; /* Aligns cards in a row */
+    overflow-x: auto; /* Enables horizontal scrolling */
+    white-space: nowrap; /* Prevents wrapping to the next line */
+    padding-bottom: 20px; /* Adds space for the scrollbar on some browsers */
+    gap: 20px; /* Creates space between the cards */
+}
+
+/* Optional: Hides the scrollbar for a cleaner look */
+.horizontal-scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Optional: For Firefox */
+.horizontal-scroll-container {
+    scrollbar-width: none;
+}
+
+.carousel-caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente para o texto */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 80%;
+}
+
+.carousel-caption {
+    /* ... (outros estilos existentes) ... */
+    padding: 15px 25px; /* Ajuste o padding se o botão precisar de mais espaço */
+    background-color: rgba(0, 0, 0, 0.7); /* Pode deixar um pouco mais escuro se quiser */
+}
+
+#carrosselDestaques .carousel-inner {
+    border-radius: 10px;
+    overflow: hidden;
+    aspect-ratio: 16 / 9; /* Mantém a proporção widescreen 16:9 */
 }
