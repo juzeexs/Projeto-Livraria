@@ -1,0 +1,723 @@
+/* --- Animações --- */
+@keyframes colorChange {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Nova animação mais rápida para o tema multicolor */
+@keyframes rainbowThemeChange {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 50% 100%; }
+    50% { background-position: 100% 50%; }
+    75% { background-position: 50% 0%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Variáveis de Cores (Temas) --- */
+:root { /* Tema Vermelho - Padrão */
+    --cor-fundo: #110000;
+    --cor-principal: #e50914; 
+    --cor-secundaria: #270000;
+    --cor-texto: #ffffff;
+    --cor-texto-secundario: #a0a0a0;
+    --cor-link-hover: #e50914;
+    --cor-fundo-transicao: linear-gradient(90deg, #000000, #8b0000, #000000, #8b0000, #000000);
+    --cor-gradiente-borda: linear-gradient(to right, #8b0000, #000000);
+    --cor-sombra-hover: rgb(255, 1, 13);
+    --cor-sombra-secundaria: rgba(221, 0, 0, 0.6);
+}
+
+.purple-theme { /* Tema Roxo */
+    --cor-principal: #9932cc;
+    --cor-secundaria: #010131;
+    --cor-fundo: #000011;
+    --cor-link-hover: #da70d6;
+    --cor-fundo-transicao: linear-gradient(90deg, #000033, #4b0082, #000033, #4b0082, #000033);
+    --cor-gradiente-borda: linear-gradient(to right, #4f0077, #000000);
+    --cor-sombra-hover: rgb(153, 50, 204);
+    --cor-sombra-secundaria: rgba(29, 0, 49, 0.6);
+}
+
+.blue-theme { /* Tema Azul */
+    --cor-fundo: #0b1f3c;
+    --cor-principal: #4dc1f5;
+    --cor-secundaria: #1c3258;
+    --cor-texto: #c7d2e3;
+    --cor-texto-secundario: #a0a0a0;
+    --cor-link-hover: #6edff6;
+    --cor-fundo-transicao: linear-gradient(90deg, #0b1f3c, #1c3258, #0b1f3c, #1c3258, #0b1f3c);
+    --cor-gradiente-borda: linear-gradient(to right, #4dc1f5, #1c3258);
+    --cor-sombra-hover: rgb(77, 193, 245);
+    --cor-sombra-secundaria: rgba(28, 50, 88, 0.6);
+}
+
+.rainbow-theme { /* NOVO TEMA: Multicolor */
+    --cor-fundo: #0a0a0a;
+    --cor-principal: #e02f90; /* Inicia com a cor roxa/rosa */
+    --cor-secundaria: #1a1a1a;
+    --cor-texto: #ffffff;
+    --cor-texto-secundario: #a0a0a0;
+    --cor-link-hover: #e50914; /* Hover para a cor vermelha */
+    --cor-fundo-transicao: linear-gradient(90deg, #e50914, #9932cc, #e50914, #9932cc);
+    --cor-gradiente-borda: linear-gradient(to right, #e50914, #9932cc);
+    --cor-sombra-hover: rgba(229, 9, 20, 0.8);
+    --cor-sombra-secundaria: rgba(153, 50, 204, 0.6);
+}
+
+/* --- Estilos Gerais e Transições --- */
+body {
+    background-color: var(--cor-fundo);
+    font-family: 'Montserrat', sans-serif;
+    color: var(--cor-texto);
+    overflow-x: hidden;
+    transition: background-color 0.5s ease; 
+}
+
+/* Transições para variáveis CSS em todos os elementos que as utilizam */
+:root, .purple-theme, .blue-theme, .rainbow-theme {
+    transition: 
+        --cor-principal 0.7s ease-in-out,
+        --cor-secundaria 0.7s ease-in-out,
+        --cor-fundo 0.7s ease-in-out,
+        --cor-texto 0.7s ease-in-out,
+        --cor-texto-secundario 0.7s ease-in-out,
+        --cor-link-hover 0.7s ease-in-out,
+        --cor-fundo-transicao 0.7s ease-in-out,
+        --cor-gradiente-borda 0.7s ease-in-out,
+        --cor-sombra-hover 0.7s ease-in-out,
+        --cor-sombra-secundaria 0.7s ease-in-out;
+}
+
+/* --- Navegação --- */
+.navbar-custom {
+    position: relative;
+    border-bottom: 5px solid var(--cor-principal);
+    background-color: var(--cor-secundaria);
+    transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+
+.animated-navbar-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--cor-fundo-transicao);
+    background-size: 400% 400%;
+    animation: colorChange 15s ease infinite;
+    z-index: -1;
+    transition: background 0.5s ease;
+}
+
+/* Sobrescreve a animação para o tema multicolor */
+.rainbow-theme .animated-navbar-bg {
+    animation: rainbowThemeChange 5s ease infinite; /* Tempo mais rápido */
+    background-size: 200% 200%; /* Gradiente mais compacto */
+}
+
+/* Adiciona também o efeito para a engrenagem (Offcanvas) */
+.offcanvas-header,
+.offcanvas-body {
+    background-color: var(--cor-fundo);
+    transition: background-color 0.5s ease;
+}
+
+/* Adiciona a animação de fundo ao offcanvas no tema multicolor */
+.rainbow-theme .offcanvas {
+    background: var(--cor-fundo-transicao);
+    background-size: 400% 400%;
+    animation: rainbowThemeChange 5s ease infinite;
+    transition: none; /* Desativa a transição suave para a animação */
+}
+
+.navbar-custom .navbar-brand {
+    color: var(--cor-texto);
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    z-index: 1;
+    transition: color 0.5s ease;
+    /* --- INÍCIO DA MUDANÇA: Sombra Neon para o título --- */
+    text-shadow: 0 0 5px var(--cor-principal), 0 0 10px var(--cor-principal);
+    transition: color 0.5s ease, text-shadow 0.7s ease-in-out;
+    /* --- FIM DA MUDANÇA --- */
+}
+
+.navbar-custom .navbar-brand::after {
+    content: " Elite";
+    color: var(--cor-principal);
+    transition: color 0.5s ease;
+}
+
+.navbar-custom .nav-link {
+    color: var(--cor-texto-secundario);
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.navbar-custom .nav-link:hover {
+    color: var(--cor-principal);
+}
+
+.navbar-custom .form-control-custom {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: var(--cor-texto);
+    transition: background-color 0.3s ease;
+}
+
+.navbar-custom .form-control-custom::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-custom .form-control-custom:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: none;
+    outline: none;
+}
+
+/* --- Seções e Conteúdo Principal --- */
+.page-section {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.page-section.active {
+    display: block;
+    opacity: 1;
+}
+
+.animated-section {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animated-lead-text {
+    background-image: var(--cor-fundo-transicao);
+    background-size: 400% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: colorChange 15s ease infinite;
+    transition: background-image 0.5s ease;
+}
+
+/* Sobrescreve a animação de texto para o tema multicolor */
+.rainbow-theme .animated-lead-text {
+    animation: rainbowThemeChange 5s ease infinite;
+    background-size: 200% 100%;
+}
+
+/* --- Carrossel --- */
+.carousel {
+    position: relative;
+    padding-bottom: 40px;
+}
+
+/* Deixa o carrossel mais suave */
+.carousel-item {
+    transition: transform 0.6s ease-in-out; 
+}
+
+.carousel-indicators {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    margin-right: 15%;
+    margin-left: 15%;
+    list-style: none;
+    padding: 0;
+}
+
+.carousel-indicators [data-bs-target] {
+    background-color: var(--cor-principal);
+    transition: background-color 0.5s ease;
+}
+
+/* --- CORREÇÃO: Proporção do Carrossel --- */
+#carrosselDestaques {
+    max-height: initial; 
+}
+
+#carrosselDestaques .carousel-inner {
+    border-radius: 10px;
+    overflow: hidden;
+    aspect-ratio: 16 / 9; 
+}
+
+#carrosselDestaques .carousel-item img {
+    height: 100%;
+    width: 100%;
+    /* --- INÍCIO DA MUDANÇA: Ajuste de imagem do carrossel --- */
+    object-fit: cover; /* A imagem preenche a área, cortando o excesso */
+    /* --- FIM DA MUDANÇA --- */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+}
+
+.img1{
+    border-radius: 15px;
+
+
+
+}
+
+.subtitulo{
+   
+
+}
+
+
+
+
+/* --- Chamada para Ação (CTA) e Botões --- */
+.cta-section {
+    background-color: var(--cor-secundaria);
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+    transition: background-color 0.5s ease;
+}
+
+.cta-section h2 {
+    color: var(--cor-principal);
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    transition: color 0.5s ease;
+}
+
+.form-control-custom {
+    background-color: #333;
+    border: 1px solid #555;
+    color: var(--cor-texto);
+    transition: all 0.5s ease;
+}
+
+.form-control-custom:focus {
+    background-color: #444;
+    border-color: var(--cor-principal);
+    box-shadow: 0 0 0 0.25rem rgba(229, 9, 20, 0.25);
+}
+
+.btn-cta {
+    background: var(--cor-gradiente-borda);
+    border: none;
+    color: var(--cor-texto);
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.btn-cta:hover {
+    background: linear-gradient(to right, var(--cor-principal), var(--cor-secundaria));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    color: var(--cor-texto);
+}
+
+/* --- Cards de Livros --- */
+.card-livro {
+    margin-bottom: 30px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--cor-secundaria);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0; 
+    transform: translateY(20px);
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.card-livro.animated {
+    opacity: 1; 
+    transform: translateY(0);
+}
+
+.card-livro:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px var(--cor-sombra-hover), 
+                0 15px 30px var(--cor-sombra-secundaria);
+}
+
+.card-livro .card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 220px;
+    object-fit: cover;
+    transition: height 0.5s ease;
+}
+
+.card-title {
+    font-weight: 700;
+    color: var(--cor-principal);
+    transition: color 0.5s ease;
+}
+
+.card-text {
+    color: var(--cor-texto-secundario);
+    transition: color 0.5s ease;
+}
+
+.card-price {
+    font-weight: 700;
+    margin-top: auto;
+    font-size: 1.2rem;
+}
+
+.price-old {
+    color: #888;
+    text-decoration: line-through;
+    font-weight: 400;
+    font-size: 0.9em;
+}
+
+.price-new {
+    color: var(--cor-principal);
+    font-size: 1.5em; 
+    transition: color 0.5s ease;
+}
+
+/* --- Carrinho e Pedidos --- */
+.dropdown-menu.dropdown-menu-dark {
+    background-color: var(--cor-secundaria);
+    transition: background-color 0.5s ease;
+}
+
+.dropdown-menu.dropdown-menu-dark .dropdown-item {
+    color: var(--cor-texto-secundario);
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.dropdown-menu.dropdown-menu-dark .dropdown-item:hover,
+.dropdown-menu.dropdown-menu-dark .dropdown-item:active {
+    background-color: var(--cor-principal);
+    color: var(--cor-texto);
+}
+
+.carrinho-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 15px;
+}
+
+.carrinho-item:last-child {
+    border-bottom: none;
+}
+
+.carrinho-item img {
+    width: 80px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+
+.carrinho-item-info {
+    flex-grow: 1;
+}
+
+.carrinho-item-info h5 {
+    margin-bottom: 5px;
+}
+
+.btn-remover {
+    font-size: 1.2rem;
+    color: var(--cor-principal);
+    transition: color 0.2s;
+}
+
+.btn-remover:hover {
+    color: #b20710;
+}
+
+.pix-code-container {
+    word-break: break-all;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.btn-copy-pix {
+    background-color: #38a169;
+    color: white;
+    border: none;
+    transition: background-color 0.2s;
+}
+
+.btn-copy-pix:hover {
+    background-color: #277e50;
+}
+
+.status-card {
+    background-color: var(--cor-secundaria);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.status-card.active {
+    border-left: 5px solid var(--cor-principal);
+    box-shadow: 0 4px 15px rgba(229, 9, 20, 0.2);
+    transform: scale(1.02);
+}
+
+.status-card .status-icon {
+    font-size: 2.5rem;
+    color: var(--cor-principal);
+    margin-right: 20px;
+    transition: color 0.5s ease;
+}
+
+/* --- Toast --- */
+.toast.custom-toast {
+    background-color: #222;
+    color: white;
+    border: 1px solid #444;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.toast-header.custom-toast-header {
+    background-color: #222;
+    color: var(--cor-principal);
+    border-bottom: 1px solid #333;
+    transition: color 0.5s ease;
+}
+
+.toast-body.custom-toast-body {
+    color: #aaa;
+}
+
+/* --- Rodapé --- */
+.footer-custom {
+    background-color: var(--cor-secundaria);
+    border-top: 5px solid var(--cor-principal);
+    padding: 2rem 0;
+    color: var(--cor-texto-secundario);
+    transition: background-color 0.5s ease, border-top-color 0.5s ease, color 0.5s ease;
+}
+
+.footer-custom .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    transition: color 0.3s ease;
+}
+
+.footer-custom .navbar-brand:hover {
+    color: #ff4500;
+}
+
+.footer-custom h5, .footer-custom h6 {
+    color: var(--cor-texto);
+    font-weight: 600;
+    border-bottom: 3px solid;
+    border-image: var(--cor-gradiente-borda) 1;
+    padding-bottom: 8px;
+    display: inline-block;
+    transition: color 0.5s ease, border-image 0.5s ease;
+}
+
+.footer-custom a {
+    color: var(--cor-texto-secundario);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-custom a:hover {
+    color: var(--cor-principal);
+}
+
+.footer-custom .social-icons a {
+    font-size: 1.25rem;
+    color: var(--cor-texto-secundario);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-custom .social-icons a:hover {
+    color: var(--cor-principal);
+    transform: scale(1.2);
+}
+
+.footer-custom .payment-icons img {
+    height: 25px;
+    margin-right: 10px;
+    filter: grayscale(100%);
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.footer-custom .payment-icons img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* --- Estilos da Newsletter no Rodapé --- */
+.newsletter-footer-input .form-control-custom {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: var(--cor-texto); /* Usa a variável para cor do texto principal */
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease; /* Adiciona transições */
+}
+
+.newsletter-footer-input .form-control-custom::placeholder {
+    color: rgba(255, 255, 255, 0.5); /* Usa a cor de placeholder do cabeçalho */
+}
+
+.newsletter-footer-input .form-control-custom:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: none;
+    outline: none;
+}
+
+.newsletter-footer-input .btn-cta {
+    background-color: var(--cor-principal);
+    color: var(--cor-texto);
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.newsletter-footer-input .btn-cta:hover {
+    background-color: var(--cor-link-hover);
+}
+
+.footer-custom p {
+    color: var(--cor-texto-secundario) !important;
+    font-size: 0.875rem;
+    transition: color 0.5s ease;
+}
+
+.footer-custom .border-secondary {
+    height: 3px;
+    background: var(--cor-gradiente-borda);
+    border: none;
+    opacity: 1;
+    transition: background 0.5s ease;
+}
+
+/* Responsividade */
+@media (max-width: 767.98px) {
+    .footer-custom .newsletter-footer-input {
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* --- Chamada para Ação (CTA) e Botões --- */
+.cta-section {
+    background-color: var(--cor-secundaria);
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+    transition: background-color 0.5s ease;
+}
+
+.cta-section h2 {
+    color: var(--cor-principal);
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    transition: color 0.5s ease;
+}
+
+/* Modificação no input da seção CTA */
+.cta-section .form-control-custom {
+    background-color: rgba(255, 255, 255, 0.05); /* Valor da transparência reduzido para 5% */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borda mais transparente */
+    color: var(--cor-texto);
+    transition: all 0.5s ease;
+}
+
+.cta-section .form-control-custom:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--cor-principal);
+    box-shadow: 0 0 0 0.25rem rgba(229, 9, 20, 0.25);
+}
+
+.btn-cta {
+    background: var(--cor-gradiente-borda);
+    border: none;
+    color: var(--cor-texto);
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.btn-cta:hover {
+    background: linear-gradient(to right, var(--cor-principal), var(--cor-secundaria));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    color: var(--cor-texto);
+}
+
+
+/* Adicione este bloco de código ao seu arquivo style.css */
+
+.large-font {
+    font-size: 1.1em; /* 10% maior que o tamanho base */
+}
+
+/* Opcional: Efeito de transição suave */
+body, body p, body h1, body h2, body h3 {
+    transition: font-size 0.3s ease;
+}
+
+
+.horizontal-scroll-container {
+    display: flex; /* Aligns cards in a row */
+    overflow-x: auto; /* Enables horizontal scrolling */
+    white-space: nowrap; /* Prevents wrapping to the next line */
+    padding-bottom: 20px; /* Adds space for the scrollbar on some browsers */
+    gap: 20px; /* Creates space between the cards */
+}
+
+/* Optional: Hides the scrollbar for a cleaner look */
+.horizontal-scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Optional: For Firefox */
+.horizontal-scroll-container {
+    scrollbar-width: none;
+}
+
+.carousel-caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente para o texto */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 80%;
+}
+
+.carousel-caption {
+    /* ... (outros estilos existentes) ... */
+    padding: 15px 25px; /* Ajuste o padding se o botão precisar de mais espaço */
+    background-color: rgba(0, 0, 0, 0.7); /* Pode deixar um pouco mais escuro se quiser */
+}
+
+#carrosselDestaques .carousel-inner {
+    border-radius: 10px;
+    overflow: hidden;
+    aspect-ratio: 16 / 9; /* Mantém a proporção widescreen 16:9 */
+}
