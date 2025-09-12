@@ -133,12 +133,14 @@ document.addEventListener('DOMContentLoaded', () => {
         </form>
     `;
 
+                    /*API de qrcode*/
     const formPixHtml = `
         <div id="info-pix">
             <h5 class="mb-3 text-white">Pagar com PIX</h5>
             <p class="text-center text-muted">Aponte a câmera do seu celular para o QR Code abaixo ou utilize o código Copia e Cola para pagar.</p>
             <div class="d-flex flex-column align-items-center mb-4">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=ChavePix-LivrariaElite-ID-2025" alt="QR Code PIX" class="mb-3">
+            
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=ChavePix-LivrariaElite-ID-2025" alt="QR Code PIX" class="mb-3">
                 <p class="fw-bold">Valor: <span id="pix-valor-total">R$ 0,00</span></p>
             </div>
             <div class="mb-3">
@@ -261,6 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    /*API de livros*/
     async function buscarOpenLibrary(query, maxResults = 24) {
         try {
             const response = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&limit=${maxResults}`);
