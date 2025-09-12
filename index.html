@@ -264,8 +264,117 @@
         </div>
     </div>
 
+<div id="perfil" class="page-section">
+        <h2 class="text-center text-white mb-4 animated-section">Meu Perfil</h2>
+        <div class="row animated-section">
+            <div class="col-md-8 mx-auto">
+                <div class="card p-4 bg-dark text-white mb-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <img id="profile-picture-lg" src="https://lh3.googleusercontent.com/a/example-profile-picture" alt="Perfil" class="rounded-circle me-3" style="width: 80px; height: 80px;">
+                        <div>
+                            <h4 id="profile-name-lg" class="mb-0 text-white">Nome do Usuário</h4>
+                            <p class="text-muted mb-0">Usuário conectado via Google</p>
+                        </div>
+                    </div>
+                    <hr class="border-secondary my-3">
+                    
+                    <h5 class="text-white mb-3"><i class="fas fa-search me-2"></i> Histórico de Busca</h5>
+                    <ul class="list-group list-group-flush bg-transparent" id="search-history-list">
+                        <li class="list-group-item bg-dark text-white">Ficção Científica</li>
+                        <li class="list-group-item bg-dark text-white">Livros de Mistério</li>
+                    </ul>
+                    <hr class="border-secondary my-3">
+                    
+                    <h5 class="text-white mb-3"><i class="fas fa-shopping-bag me-2"></i> Minhas Compras</h5>
+                    <ul class="list-group list-group-flush bg-transparent" id="purchase-history-list">
+                        <li class="list-group-item bg-dark text-white d-flex justify-content-between align-items-center">
+                            Livro Incrível 1 <span class="badge bg-secondary">Entregue</span>
+                        </li>
+                        <li class="list-group-item bg-dark text-white d-flex justify-content-between align-items-center">
+                            Aventura Mágica <span class="badge bg-secondary">Em Transporte</span>
+                        </li>
+                    </ul>
+                    <hr class="border-secondary my-3">
+                    
+                    <h5 class="text-white mb-3"><i class="fas fa-book-reader me-2"></i> Minha Biblioteca Digital</h5>
+                    <div id="digital-library" class="row">
+                        <div class="col-6 col-md-4 mb-3">
+                            <div class="card-livro animated text-center">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz8O2-mE_H_7T3f_z-O5QjM9-R3nQ6L8LqM_g&usqp=CAU" class="card-img-top" alt="Livro 1">
+                                <div class="card-body">
+                                    <h6 class="card-title text-white">Livro Incrível 1</h6>
+                                    <a href="#" class="btn btn-cta btn-sm mt-2">Ler Online</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4 mb-3">
+                            <div class="card-livro animated text-center">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7f-E3O9nK0oT5k7_8F4sJ_nJ6-t-1v-8X-Q&usqp=CAU" class="card-img-top" alt="Livro 2">
+                                <div class="card-body">
+                                    <h6 class="card-title text-white">Aventura Mágica</h6>
+                                    <a href="#" class="btn btn-cta btn-sm mt-2">Ler Online</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+</main>
 
+<footer class="container-fluid footer-custom">
+    <div class="container py-5">
+        <div class="row g-4">
+            <div class="col-md-4 text-center text-md-start mb-4 mb-md-0" id="footer-brand-column">
+                <a href="#" class="navbar-brand mb-3 d-inline-block" data-page="home">Livraria Elite</a>
+                <p class="text-muted small">
+                    Sua porta de entrada para um universo de conhecimento e aventura. Encontre os melhores títulos e viva novas histórias conosco.
+                </p>
+                <div class="social-icons mt-3">
+                    <a href="#" class="text-white-50 me-3"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white-50 me-3"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white-50 me-3"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-white-50"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="col-md-2 text-center text-md-start mb-4 mb-md-0" id="footer-explore-column">
+                <h5 class="mb-3">Explorar</h5>
+                <ul class="list-unstyled">
+                    <li><a class="text-white-50 text-decoration-none py-1 d-block" href="#" data-page="catalogo">Catálogo</a></li>
+                    <li><a class="text-white-50 text-decoration-none py-1 d-block" href="#" data-page="home">Destaques</a></li>
+                    <li><a class="text-white-50 text-decoration-none py-1 d-block" href="#">Mais Vendidos</a></li>
+                    <li><a class="text-white-50 text-decoration-none py-1 d-block" href="#">Novidades</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3 text-center text-md-start mb-4 mb-md-0" id="footer-support-column">
+                <h5 class="mb-3">Atendimento</h5>
+                <ul class="list-unstyled">
+                    <li><a class="text-white-50 text-decoration-none py-1 d-block" href="#">Meus Pedidos</a></li>
+                    <li><a class="text-white-50 text-decoration-none py-1 d-block" href="#">FAQ - Perguntas Frequentes</a></li>
+                    <li><a class="text-white-50 text-decoration-none py-1 d-block" href="#">Política de Troca</a></li>
+                    <li><a class="text-white-50 text-decoration-none py-1 d-block" href="#">Fale Conosco</a></li>
+</ul>
+            </div>
+
+            <div class="col-md-3 text-center text-md-start" id="footer-contact-column">
+                <h5 class="mb-3">Contato & Pagamento</h5>
+                <p class="text-muted small"><i class="fas fa-map-marker-alt me-2"></i> Rua Fictícia, 123 - Centro, Porto Alegre - RS, Brasil</p>
+                <p class="text-muted small"><i class="fas fa-envelope me-2"></i> contato@livrariaelite.com</p>
+                <p class="text-muted small"><i class="fas fa-phone me-2"></i> (51) 99999-9999</p>
+                
+                <h6 class="mt-4 mb-3 text-white">Formas de Pagamento</h6>
+                <div class="payment-icons d-flex justify-content-center justify-content-md-start flex-wrap">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png" alt="Visa" class="img-fluid me-2 mb-2" style="height: 25px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/2560px-Mastercard-logo.svg.png" alt="Mastercard" class="img-fluid me-2 mb-2" style="height: 25px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo%E2%80%94pix_powered_by_Banco_Central_%28Brazil%2C_2020%29.svg/2560px-Logo%E2%80%94pix_powered_by_Banco_Central_%28Brazil%2C_2020%29.svg.png" alt="Pix" class="img-fluid me-2 mb-2" style="height: 25px;">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCeFOcf9LrQo11_tf9lMiV-_yRxlEcH0vgRQ&s" alt="Boleto" class="img-fluid me-2 mb-2" style="height: 25px;">
+                </div>
+            </div>
+        </div>
 
 
 

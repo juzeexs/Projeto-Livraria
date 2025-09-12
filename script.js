@@ -295,4 +295,64 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-   
+   async function buscarLivros(query) {
+        renderizarEsqueleto(livrosInicio, 8);
+        renderizarEsqueleto(catalogoLivros, 24);
+
+        let livrosEncontrados = await buscarOpenLibrary(query, 24);
+
+        livrosAPI = livrosEncontrados.filter(livro => livro.titulo && livro.autor && livro.imagem.includes('placeholder') === false);
+        
+        console.log(`Livros encontrados para "${query}":`, livrosAPI);
+
+        if (livrosAPI.length > 0) {
+            renderizarLivros(livrosAPI.slice(0, 8), livrosInicio);
+            renderizarLivros(livrosAPI, catalogoLivros);
+        } else {
+            livrosInicio.innerHTML = '<p class="text-center text-secondary">Nenhum livro popular encontrado. Tente buscar algo!</p>';
+            catalogoLivros.innerHTML = '<p class="text-center text-secondary">Nenhum livro encontrado para a sua busca. Tente um termo diferente.</p>';
+        }
+    }
+
+    function renderizarLivros(livros, container) {
+        container.innerHTML = '';
+        if (livros.length === 0) {
+            container.innerHTML = '<p class="text-center text-secondary">Nenhum livro encontrado.</p>';
+            return;
+        }
+        
+        const ageRatings = {
+            'L': '#37a70a',
+            '10': '#64a100',
+            '12': '#a06e00',
+            '14': '#b22222',
+            '16': '#8b0000',
+            '18': '#000000'
+        };
+
+        const getAgeBlock = (age) => {
+            let text = '';
+            let color = '';
+
+            if (age < 10) {
+                text = 'L';
+                color = ageRatings['L'];
+            } else if (age >= 10 && age < 12) {
+                text = '10';
+                color = ageRatings['10'];
+            } else if (age >= 12 && age < 14) {
+                text = '12';
+                color = ageRatings['12'];
+            } else if (age >= 14 && age < 16) {
+                text = '14';
+                color = ageRatings['14'];
+            } else if (age >= 16 && age < 18) {
+                text = '16';
+                color = ageRatings['16'];
+            } else {
+                text = '18';
+                color = ageRatings['18'];
+            }
+            
+            return `<span style="background-color: ${color}; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold;">${text}</span>`;
+        };

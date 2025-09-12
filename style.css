@@ -401,3 +401,176 @@ body {
     transition: background-color 0.5s ease;
 }
 
+.dropdown-menu.dropdown-menu-dark .dropdown-item {
+    color: var(--cor-texto-secundario);
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.dropdown-menu.dropdown-menu-dark .dropdown-item:hover,
+.dropdown-menu.dropdown-menu-dark .dropdown-item:active {
+    background-color: var(--cor-principal);
+    color: var(--cor-texto);
+}
+
+.carrinho-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 15px;
+}
+
+.carrinho-item:last-child {
+    border-bottom: none;
+}
+
+.carrinho-item img {
+    width: 80px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+
+.carrinho-item-info {
+    flex-grow: 1;
+}
+
+.carrinho-item-info h5 {
+    margin-bottom: 5px;
+}
+
+.btn-remover {
+    font-size: 1.2rem;
+    color: var(--cor-principal);
+    transition: color 0.2s;
+}
+
+.btn-remover:hover {
+    color: #b20710;
+}
+
+.pix-code-container {
+    word-break: break-all;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.btn-copy-pix {
+    background-color: #38a169;
+    color: white;
+    border: none;
+    transition: background-color 0.2s;
+}
+
+.btn-copy-pix:hover {
+    background-color: #277e50;
+}
+
+.status-card {
+    background-color: var(--cor-secundaria);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.status-card.active {
+    border-left: 5px solid var(--cor-principal);
+    box-shadow: 0 4px 15px rgba(229, 9, 20, 0.2);
+    transform: scale(1.02);
+}
+
+.status-card .status-icon {
+    font-size: 2.5rem;
+    color: var(--cor-principal);
+    margin-right: 20px;
+    transition: color 0.5s ease;
+}
+
+/* --- Toast --- */
+.toast.custom-toast {
+    background-color: #222;
+    color: white;
+    border: 1px solid #444;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.toast-header.custom-toast-header {
+    background-color: #222;
+    color: var(--cor-principal);
+    border-bottom: 1px solid #333;
+    transition: color 0.5s ease;
+}
+
+.toast-body.custom-toast-body {
+    color: #aaa;
+}
+
+/* --- Rodapé --- */
+.footer-custom {
+    background-color: var(--cor-secundaria);
+    border-top: 5px solid var(--cor-principal);
+    padding: 2rem 0;
+    color: var(--cor-texto-secundario);
+    transition: background-color 0.5s ease, border-top-color 0.5s ease, color 0.5s ease;
+}
+
+.footer-custom .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    transition: color 0.3s ease;
+}
+
+.footer-custom .navbar-brand:hover {
+    color: #ff4500;
+}
+
+.footer-custom h5, .footer-custom h6 {
+    color: var(--cor-texto);
+    font-weight: 600;
+    border-bottom: 3px solid;
+    border-image: var(--cor-gradiente-borda) 1;
+    padding-bottom: 8px;
+    display: inline-block;
+    transition: color 0.5s ease, border-image 0.5s ease;
+}
+
+.footer-custom a {
+    color: var(--cor-texto-secundario);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-custom a:hover {
+    color: var(--cor-principal);
+}
+
+.footer-custom .social-icons a {
+    font-size: 1.25rem;
+    color: var(--cor-texto-secundario);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-custom .social-icons a:hover {
+    color: var(--cor-principal);
+    transform: scale(1.2);
+}
+
+.footer-custom .payment-icons img {
+    height: 25px;
+    margin-right: 10px;
+    filter: grayscale(100%);
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.footer-custom .payment-icons img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+
