@@ -331,3 +331,73 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     color: var(--cor-texto);
 }
+
+/* --- Cards de Livros --- */
+.card-livro {
+    margin-bottom: 30px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--cor-secundaria);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0; 
+    transform: translateY(20px);
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.card-livro.animated {
+    opacity: 1; 
+    transform: translateY(0);
+}
+
+.card-livro:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px var(--cor-sombra-hover), 
+                0 15px 30px var(--cor-sombra-secundaria);
+}
+
+.card-livro .card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 220px;
+    object-fit: cover;
+    transition: height 0.5s ease;
+}
+
+.card-title {
+    font-weight: 700;
+    color: var(--cor-principal);
+    transition: color 0.5s ease;
+}
+
+.card-text {
+    color: var(--cor-texto-secundario);
+    transition: color 0.5s ease;
+}
+
+.card-price {
+    font-weight: 700;
+    margin-top: auto;
+    font-size: 1.2rem;
+}
+
+.price-old {
+    color: #888;
+    text-decoration: line-through;
+    font-weight: 400;
+    font-size: 0.9em;
+}
+
+.price-new {
+    color: var(--cor-principal);
+    font-size: 1.5em; 
+    transition: color 0.5s ease;
+}
+
+/* --- Carrinho e Pedidos --- */
+.dropdown-menu.dropdown-menu-dark {
+    background-color: var(--cor-secundaria);
+    transition: background-color 0.5s ease;
+}
+
