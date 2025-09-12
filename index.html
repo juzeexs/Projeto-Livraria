@@ -177,6 +177,61 @@
             </div>
             </section>
 
+ <div id="catalogo" class="page-section">
+        <section class="row animated-section">
+            <h2 class="text-center mb-4 text-white">Nosso Catálogo Completo</h2>
+            <div id="catalogo-livros" class="row">
+            </div>
+        </section>
+    </div>
+    
+    <div id="produto" class="page-section">
+        <section class="row animated-section">
+            <div id="detalhes-livro" class="col-12">
+            </div>
+        </section>
+    </div>
+    
+    <div id="carrinho" class="page-section">
+        <h2 class="text-center text-white mb-4 animated-section">Seu Carrinho de Compras</h2>
+        <div id="itens-carrinho" class="card p-4 bg-dark text-white animated-section">
+            <ul class="list-group list-group-flush" id="lista-itens-carrinho">
+            </ul>
+            <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top border-secondary">
+                <h5>Total:</h5>
+                <h5 id="carrinho-total">R$ 0,00</h5>
+            </div>
+        </div>
+        <div class="d-grid mt-4 animated-section">
+            <button class="btn btn-cta btn-lg" id="btn-finalizar-compra" data-page="checkout">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <div id="checkout" class="page-section">
+        <h2 class="text-center text-white mb-4 animated-section">Finalizar Compra</h2>
+        <div class="card p-4 bg-dark text-white animated-section">
+            <h5 class="mb-3 text-white">Escolha a Forma de Pagamento</h5>
+            <div id="opcoes-pagamento" class="mb-4">
+                <div class="btn-group w-100" role="group" aria-label="Opções de pagamento">
+                    <input type="radio" class="btn-check" name="payment-method" id="cartao" autocomplete="off" checked>
+                    <label class="btn btn-outline-light" for="cartao">
+                        <i class="fas fa-credit-card me-2"></i> Cartão
+                    </label>
+                    <input type="radio" class="btn-check" name="payment-method" id="pix" autocomplete="off">
+                    <label class="btn btn-outline-light" for="pix">
+                        <i class="fas fa-qrcode me-2"></i> PIX
+                    </label>
+                    <input type="radio" class="btn-check" name="payment-method" id="boleto" autocomplete="off">
+                    <label class="btn btn-outline-light" for="boleto">
+                        <i class="fas fa-barcode me-2"></i> Boleto
+                    </label>
+                </div>
+            </div>
+
+            <div id="container-pagamento">
+            </div>
+        </div>
+    </div>
 
 
 
@@ -198,7 +253,6 @@
 
 
 
-            
 
     <!--assinatura dos livros-->
         <section class="cta-section my-5 animated-section">
