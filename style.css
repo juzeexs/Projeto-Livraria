@@ -281,3 +281,53 @@ body {
    
 
 }
+
+ /*copywriter*/
+.copywriter{
+    text-align: center ;
+
+}
+
+/* --- Chamada para Ação (CTA) e Botões --- */
+.cta-section {
+    background-color: var(--cor-secundaria);
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+    transition: background-color 0.5s ease;
+}
+
+.cta-section h2 {
+    color: var(--cor-principal);
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    transition: color 0.5s ease;
+}
+
+.form-control-custom {
+    background-color: #333;
+    border: 1px solid #555;
+    color: var(--cor-texto);
+    transition: all 0.5s ease;
+}
+
+.form-control-custom:focus {
+    background-color: #444;
+    border-color: var(--cor-principal);
+    box-shadow: 0 0 0 0.25rem rgba(229, 9, 20, 0.25);
+}
+
+.btn-cta {
+    background: var(--cor-gradiente-borda);
+    border: none;
+    color: var(--cor-texto);
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.btn-cta:hover {
+    background: linear-gradient(to right, var(--cor-principal), var(--cor-secundaria));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    color: var(--cor-texto);
+}
