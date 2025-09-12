@@ -445,7 +445,50 @@
     </div>
 </div>
 
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark text-white">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title" id="loginModalLabel">Entrar ou Cadastrar</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="login-form" class="active">
+                    <div class="mb-3">
+                        <label for="login-email" class="form-label">E-mail</label>
+                        <input type="email" class="form-control form-control-custom" id="login-email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="login-password" class="form-label">Senha</label>
+                        <input type="password" class="form-control form-control-custom" id="login-password" required>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-cta">Entrar</button>
 
+                    </div>
+                </form>
+                <form id="signup-form" class="d-none">
+                    <div class="mb-3">
+                        <label for="signup-name" class="form-label">Nome</label>
+                        <input type="text" class="form-control form-control-custom" id="signup-name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="signup-email" class="form-label">E-mail</label>
+                        <input type="email" class="form-control form-control-custom" id="signup-email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="signup-password" class="form-label">Senha</label>
+                        <input type="password" class="form-control form-control-custom" id="signup-password" required>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-cta">Cadastrar</button>
+                        <button type="button" class="btn btn-outline-light" id="login-back-btn">Já tenho conta. Voltar ao login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

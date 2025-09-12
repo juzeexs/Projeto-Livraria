@@ -573,4 +573,142 @@ body {
     opacity: 1;
 }
 
+/* --- Estilos da Newsletter no Rodapé --- */
+.newsletter-footer-input .form-control-custom {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: var(--cor-texto); /* Usa a variável para cor do texto principal */
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease; /* Adiciona transições */
+}
+
+.newsletter-footer-input .form-control-custom::placeholder {
+    color: rgba(255, 255, 255, 0.5); /* Usa a cor de placeholder do cabeçalho */
+}
+
+.newsletter-footer-input .form-control-custom:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: none;
+    outline: none;
+}
+
+.newsletter-footer-input .btn-cta {
+    background-color: var(--cor-principal);
+    color: var(--cor-texto);
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.newsletter-footer-input .btn-cta:hover {
+    background-color: var(--cor-link-hover);
+}
+
+.footer-custom p {
+    color: var(--cor-texto-secundario) !important;
+    font-size: 0.875rem;
+    transition: color 0.5s ease;
+}
+
+.footer-custom .border-secondary {
+    height: 3px;
+    background: var(--cor-gradiente-borda);
+    border: none;
+    opacity: 1;
+    transition: background 0.5s ease;
+}
+
+/* Responsividade */
+@media (max-width: 767.98px) {
+    .footer-custom .newsletter-footer-input {
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* --- Chamada para Ação (CTA) e Botões --- */
+.cta-section {
+    background-color: var(--cor-secundaria);
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+    transition: background-color 0.5s ease;
+}
+
+.cta-section h2 {
+    color: var(--cor-principal);
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    transition: color 0.5s ease;
+}
+
+/* Modificação no input da seção CTA */
+.cta-section .form-control-custom {
+    background-color: rgba(255, 255, 255, 0.05); /* Valor da transparência reduzido para 5% */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borda mais transparente */
+    color: var(--cor-texto);
+    transition: all 0.5s ease;
+}
+
+.cta-section .form-control-custom:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--cor-principal);
+    box-shadow: 0 0 0 0.25rem rgba(229, 9, 20, 0.25);
+}
+
+.btn-cta {
+    background: var(--cor-gradiente-borda);
+    border: none;
+    color: var(--cor-texto);
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.btn-cta:hover {
+    background: linear-gradient(to right, var(--cor-principal), var(--cor-secundaria));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    color: var(--cor-texto);
+}
+
+
+/* Adicione este bloco de código ao seu arquivo style.css */
+
+.large-font {
+    font-size: 1.1em; /* 10% maior que o tamanho base */
+}
+
+/* Opcional: Efeito de transição suave */
+body, body p, body h1, body h2, body h3 {
+    transition: font-size 0.3s ease;
+}
+
+.horizontal-scroll-container {
+    display: flex; /* Aligns cards in a row */
+    overflow-x: auto; /* Enables horizontal scrolling */
+    white-space: nowrap; /* Prevents wrapping to the next line */
+    padding-bottom: 20px; /* Adds space for the scrollbar on some browsers */
+    gap: 20px; /* Creates space between the cards */
+}
+
+/* Optional: Hides the scrollbar for a cleaner look */
+.horizontal-scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Optional: For Firefox */
+.horizontal-scroll-container {
+    scrollbar-width: none;
+}
+
+.carousel-caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente para o texto */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 80%;
+}
 
