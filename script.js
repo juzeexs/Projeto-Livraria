@@ -11,6 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnFinalizarCompra = document.getElementById('btn-finalizar-compra');
     const opcoesPagamento = document.getElementById('opcoes-pagamento');
     const containerPagamento = document.getElementById('container-pagamento');
+    const newsletterInput = document.getElementById('newsletter-input');
+    const btnAssinar = document.getElementById('btn-assinar');
+    const newsletterInputFooter = document.getElementById('newsletter-input-footer');
+    const btnAssinarFooter = document.getElementById('btn-assinar-footer');
 
     let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
     let livrosAPI = [];
@@ -567,13 +571,14 @@ document.addEventListener('DOMContentLoaded', () => {
         showPage('home');
         containerPagamento.innerHTML = '';
     }
-
-    // Funcionalidade de validação e envio da Newsletter
+    
+    // --- Lógica Unificada da Newsletter ---
     function handleNewsletterSubscription(inputElement) {
         const email = inputElement.value.trim();
         if (email && email.includes('@') && email.includes('.')) {
+            // Lógica para enviar o e-mail (simulada)
             showToast('Assinatura Concluída!', 'Obrigado por assinar! Em breve você receberá nossas melhores ofertas.');
-            inputElement.value = '';
+            inputElement.value = ''; // Limpa o campo
         } else {
             showToast('Erro na Assinatura', 'Por favor, insira um endereço de e-mail válido.');
         }
@@ -589,7 +594,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (target) {
             e.preventDefault();
             showPage(target.getAttribute('data-page'));
-        } else if (bookCard) {
+        } else if (bookCard && !e.target.closest('.btn-adicionar-carrinho')) {
             e.preventDefault();
             showPage('produto', bookCard.getAttribute('data-book-id'));
         } else if (btnAddCarrinho) {
@@ -626,20 +631,15 @@ document.addEventListener('DOMContentLoaded', () => {
             showCheckoutSteps(e.target.id);
         }
     });
-    
-    // Event listeners para a newsletter (unificados)
-    const btnAssinar = document.getElementById('btn-assinar');
-    const newsletterInput = document.getElementById('newsletter-input');
-    const btnAssinarFooter = document.getElementById('btn-assinar-footer');
-    const newsletterInputFooter = document.getElementById('newsletter-input-footer');
 
+    // Event listeners para a newsletter (com a nova função)
     if (btnAssinar) {
         btnAssinar.addEventListener('click', () => handleNewsletterSubscription(newsletterInput));
     }
     if (btnAssinarFooter) {
         btnAssinarFooter.addEventListener('click', () => handleNewsletterSubscription(newsletterInputFooter));
     }
-
+    
     // Define o ano atual no rodapé
     const currentYearSpan = document.getElementById('current-year');
     if (currentYearSpan) {
@@ -649,3 +649,165 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicialização da página
     buscarLivros('popular science');
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Sincronizar seletores de tema
+    const themeSelectors = document.querySelectorAll('#themeSelector, #themeSelectorOffcanvas');
+
+    themeSelectors.forEach(selector => {
+        selector.addEventListener('change', function() {
+            const theme = this.value;
+            document.body.className = `${theme}-theme`;
+            themeSelectors.forEach(otherSelector => {
+                if (otherSelector !== this) {
+                    otherSelector.value = theme;
+                }
+            });
+        });
+    });
+
+    // Animação de cards ao rolar
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+            }
+        });
+    }, {
+        threshold: 0.2
+    });
+
+    document.querySelectorAll('.card-livro').forEach(card => {
+        observer.observe(card);
+    });
+
+    // --- Lógica do Carrinho ---
+    let carrinho = []; // Array para armazenar os itens do carrinho
+    const cartCountSpan = document.querySelector('.position-absolute.top-0.start-100.translate-middle.badge');
+    const itensCarrinhoContainer = document.getElementById('itensCarrinho');
+    const carrinhoVazioMsg = document.getElementById('carrinhoVazio');
+    const valorTotalSpan = document.getElementById('valorTotal');
+
+    // Função para atualizar o carrinho na interface
+    function atualizarCarrinhoUI() {
+        itensCarrinhoContainer.innerHTML = ''; // Limpa o conteúdo atual
+        let total = 0;
+
+        if (carrinho.length === 0) {
+            carrinhoVazioMsg.style.display = 'block';
+        } else {
+            carrinhoVazioMsg.style.display = 'none';
+            carrinho.forEach(item => {
+                const itemHTML = `
+                    <div class="carrinho-item" data-product-id="${item.id}">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="carrinho-item-info">
+                            <h5 class="mb-0">${item.name}</h5>
+                            <small class="text-muted">R$ ${item.price.toFixed(2).replace('.', ',')}</small>
+                        </div>
+                        <button class="btn btn-sm btn-link text-danger btn-remover" data-product-id="${item.id}">
+                            <i class="bi bi-x-circle"></i>
+                        </button>
+                    </div>
+                `;
+                itensCarrinhoContainer.innerHTML += itemHTML;
+                total += item.price;
+            });
+        }
+        
+        cartCountSpan.textContent = carrinho.length;
+        valorTotalSpan.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+    }
+
+    // Adiciona evento de clique para os botões "Adicionar ao Carrinho"
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = this.dataset.productId;
+            const productName = this.dataset.productName;
+            const productPrice = parseFloat(this.dataset.productPrice);
+            const productImage = this.dataset.productImage;
+
+            const novoItem = {
+                id: productId,
+                name: productName,
+                price: productPrice,
+                image: productImage
+            };
+
+            carrinho.push(novoItem);
+            atualizarCarrinhoUI();
+        });
+    });
+
+    // Adiciona evento de clique para os botões "Remover"
+    itensCarrinhoContainer.addEventListener('click', function(event) {
+        if (event.target.classList.contains('btn-remover') || event.target.closest('.btn-remover')) {
+            const button = event.target.closest('.btn-remover');
+            const productId = button.dataset.productId;
+            carrinho = carrinho.filter(item => item.id !== productId);
+            atualizarCarrinhoUI();
+        }
+    });
+
+    atualizarCarrinhoUI(); // Inicia a interface do carrinho vazia
+});
+
+document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', function() {
+        const productId = this.dataset.productId;
+        const productName = this.dataset.productName;
+        const productPrice = parseFloat(this.dataset.productPrice);
+        const productImage = this.dataset.productImage;
+
+        // Verifica se o item já está no carrinho
+        const itemExistente = carrinho.find(item => item.id === productId);
+
+        if (itemExistente) {
+            // Se o item já existe, apenas incrementa a quantidade
+            itemExistente.quantidade++;
+            showToast('Item Atualizado!', `${productName} foi adicionado novamente ao seu carrinho.`);
+        } else {
+            // Se o item não existe, adiciona um novo item com quantidade 1
+            const novoItem = {
+                id: productId,
+                name: productName,
+                price: productPrice,
+                image: productImage,
+                quantidade: 1 // Adiciona a propriedade 'quantidade'
+            };
+            carrinho.push(novoItem);
+            showToast('Item Adicionado!', `${productName} foi adicionado ao seu carrinho.`);
+        }
+
+        // Salva o carrinho no localStorage e atualiza a UI
+        localStorage.setItem('carrinho', JSON.stringify(carrinho));
+        atualizarCarrinhoUI();
+    });
+});
+
+function renderizarCarrinho() {
+    listaItensCarrinho.innerHTML = '';
+    if (carrinho.length === 0) {
+        listaItensCarrinho.innerHTML = '<p class="text-center text-muted">Seu carrinho está vazio.</p>';
+    } else {
+        carrinho.forEach(item => {
+            const li = document.createElement('li');
+            li.classList.add('list-group-item', 'd-flex', 'align-items-center', 'cart-item-list');
+            li.innerHTML = `
+                <img src="${item.image}" alt="${item.name}" class="img-thumbnail me-3" style="width: 60px;">
+                <div class="flex-grow-1">
+                    <h6 class="mb-0">${item.name}</h6>
+                    <p class="text-muted mb-0">R$ ${item.price.toFixed(2).replace('.', ',')}</p>
+                </div>
+                <div class="d-flex align-items-center">
+                    <input type="number" class="form-control form-control-sm me-2 item-quantity" value="${item.quantidade}" data-product-id="${item.id}" min="1" style="width: 70px;">
+                    <button class="btn btn-danger btn-sm btn-remover" data-product-id="${item.id}">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            `;
+            listaItensCarrinho.appendChild(li);
+        });
+    }
+    atualizarCarrinhoTotal();
+}
