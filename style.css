@@ -1,4 +1,3 @@
-/* --- Animações --- */
 @keyframes colorChange {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
@@ -66,11 +65,10 @@
     }
 }
 
-/* --- Variáveis de Cores (Temas) --- */
-:root { /* Tema Vermelho - Padrão */
-    --cor-fundo: #110000;
+:root { 
+    --cor-fundo: #000000;
     --cor-principal: #e50914; 
-    --cor-secundaria: #270000;
+    --cor-secundaria: #202020;
     --cor-terciaria: #3a0000;
     --cor-texto: #ffffff;
     --cor-texto-secundario: #a0a0a0;
@@ -81,11 +79,11 @@
     --cor-sombra-secundaria: rgb(255, 0, 0);
 }
 
-.purple-theme { /* Tema Roxo */
+.purple-theme { 
     --cor-principal: #9932cc;
-    --cor-secundaria: #010131;
+    --cor-secundaria: #202020;
     --cor-terciaria: #1a0040;
-    --cor-fundo: #000011;
+    --cor-fundo: #000000;
     --cor-link-hover: #da70d6;
     --cor-fundo-transicao: linear-gradient(90deg, #000024, #8800e9, #000024, #8800e9, #000024);
     --cor-gradiente-borda: linear-gradient(to right, #4f0077, #000000);
@@ -93,10 +91,10 @@
     --cor-sombra-secundaria: rgb(153, 0, 255);
 }
 
-.blue-theme { /* Tema Azul */
-    --cor-fundo: #000e22;
+.blue-theme { 
+    --cor-fundo: #000000;
     --cor-principal: #0084c2;
-    --cor-secundaria: #001842;
+    --cor-secundaria: #202020;
     --cor-terciaria: #002a60;
     --cor-texto: #c7d2e3;
     --cor-texto-secundario: #a0a0a0;
@@ -107,10 +105,10 @@
     --cor-sombra-secundaria: rgb(0, 94, 255);
 }
 
-.rainbow-theme { /* NOVO TEMA: Multicolor */
-    --cor-fundo: #0a0a0a;
+.rainbow-theme { 
+    --cor-fundo: #000000;
     --cor-principal: #e02f90;
-    --cor-secundaria: #10001f;
+    --cor-secundaria: #202020;
     --cor-terciaria: #2a003f;
     --cor-texto: #ffffff;
     --cor-texto-secundario: #a0a0a0;
@@ -121,7 +119,6 @@
     --cor-sombra-secundaria: rgb(170, 0, 255);
 }
 
-/* --- Estilos Gerais e Transições --- */
 body {
     background-color: var(--cor-fundo);
     font-family: 'Montserrat', sans-serif;
@@ -154,12 +151,10 @@ body {
     animation: slideInUp 0.8s ease-out forwards;
 }
 
-/* Nova classe para a animação de entrada da direita */
 .slide-in-right {
     animation: slideInRight 1.2s ease-out forwards;
 }
 
-/* --- Navegação --- */
 .navbar-custom {
     position: relative;
     border-bottom: 5px solid var(--cor-principal);
@@ -228,7 +223,6 @@ body {
     outline: none;
 }
 
-/* --- Offcanvas (Configurações e Login) --- */
 .offcanvas {
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
@@ -298,7 +292,6 @@ body {
     border-color: var(--cor-sombra-hover);
 }
 
-/* --- Seções e Conteúdo Principal --- */
 .page-section {
     display: none;
     opacity: 0;
@@ -325,7 +318,6 @@ body {
     background-size: 200% 100%;
 }
 
-/* --- Carrossel --- */
 .carousel {
     position: relative;
     padding-bottom: 40px;
@@ -333,7 +325,6 @@ body {
     animation: slideInFromSide 1.2s ease-out forwards;
 }
 
-/* AlteraÃ§Ã£o principal: Oculta as setas laterais */
 .carousel-control-prev,
 .carousel-control-next {
     display: none !important;
@@ -414,7 +405,6 @@ body {
     color: var(--cor-texto-secundario);
 }
 
-/* --- Chamada para AÃ§Ã£o (CTA) e BotÃµes --- */
 .cta-section {
     background-color: var(--cor-secundaria);
     border-radius: 10px;
@@ -484,7 +474,6 @@ body {
     color: var(--cor-texto);
 }
 
-/* --- Cards de Livros --- */
 .card-livro {
     background-color: var(--cor-secundaria);
     border: none;
@@ -512,13 +501,10 @@ body {
 .card-livro img {
     width: 250px;
     height: 280px;
-    
     object-fit: cover;
     border-radius: 10px;
-    
     margin-bottom: 10px;
     margin-top: 5px;
-    
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 }
 
@@ -560,7 +546,6 @@ body {
                 0 0 20px rgba(var(--cor-principal-rgb), 0.4);
 }
 
-/* --- Preços --- */
 .price-old {
     color: #888;
     text-decoration: line-through;
@@ -574,7 +559,6 @@ body {
     transition: color 0.5s ease;
 }
 
-/* --- Horizontal Scroll Container --- */
 .horizontal-scroll-container {
     display: flex;
     overflow-x: auto;
@@ -591,7 +575,6 @@ body {
     scrollbar-width: none;
 }
 
-/* --- Carrinho e Pedidos --- */
 .dropdown-menu.dropdown-menu-dark {
     background-color: var(--cor-secundaria);
     transition: background-color 0.5s ease;
@@ -686,7 +669,6 @@ body {
     transition: color 0.5s ease;
 }
 
-/* --- Toast --- */
 .toast.custom-toast {
     background-color: #222;
     color: white;
@@ -705,7 +687,6 @@ body {
     color: #aaa;
 }
 
-/* --- Rodapé --- */
 .footer-custom {
     background-color: var(--cor-secundaria);
     border-top: 5px solid var(--cor-principal);
@@ -811,7 +792,6 @@ body {
     transition: background 0.5s ease;
 }
 
-/* Responsividade */
 @media (max-width: 767.98px) {
     .footer-custom .newsletter-footer-input {
         max-width: 300px;
@@ -851,52 +831,46 @@ body {
     animation: slideInFromRight 1.2s ease-out forwards;
 }
 
-/* Estilo para o contêiner que agrupa o input e o botão */
 .campo-assinatura {
     display: flex;
     align-items: stretch;
 }
 
-/* Container que alinha os elementos */
 .campo-assinatura {
     display: flex;
-    align-items: stretch; /* Garante que input e botão tenham a mesma altura */
-    gap: 10px; /* Adiciona um espaço de 10px entre os elementos */
-    width: 100%; /* Ajusta a largura total do container */
+    align-items: stretch;
+    gap: 10px;
+    width: 100%;
 }
 
-/* Container que alinha os elementos */
 .campo-assinatura {
     display: flex;
-    align-items: stretch; /* Garante que input e botão tenham a mesma altura */
-    gap: 10px; /* Adiciona um espaço de 10px entre os elementos */
-    width: 100%; /* Ajusta a largura total do container */
-    max-width: 500px; /* Opcional: define uma largura máxima para o grupo input+botão */
-    margin: 0 auto; /* Opcional: centraliza o grupo se max-width for usado */
+    align-items: stretch;
+    gap: 10px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto; 
 }
 
-/* Estilo para a caixa de input */
 .input-assinar {
     background-color: rgba(255, 255, 255, 0.1);
     border: none;
     color: var(--cor-texto);
     transition: background-color 0.3s ease;
     padding: 10px 20px;
-    flex: 1; /* Permite que o input preencha o espaço restante, mas respeitando o botão */
-    min-width: 150px; /* Opcional: Garante que o input não fique muito pequeno */
-    box-sizing: border-box; /* Garante que padding e borda não aumentem a largura total */
+    flex: 1; 
+    min-width: 150px; 
+    box-sizing: border-box;
 border-radius: 10px;
 
 }
 
-/* Estilo do input quando está em foco */
 .input-assinar:focus {
-    outline: none; /* Remove a borda azul padrão */
-    background-color: rgba(255, 255, 255, 0.2); /* Opcional: escurece o fundo */
+    outline: none; 
+    background-color: rgba(255, 255, 255, 0.2);
 border-radius: 10px;
 }
 
-/* Estilos principais do botão */
 .btn-assinar {
     background: var(--cor-gradiente-borda);
     color: var(--cor-texto);
@@ -905,12 +879,9 @@ border-radius: 10px;
     font-weight: 700;
     border-radius: 10px;
     cursor: pointer;
-    white-space: nowrap; /* Impede que o texto quebre para a próxima linha */
-    /* Removemos a largura fixa do botão para que ele se ajuste ao texto */
-    /* min-width: 100px;  Opcional: se precisar de uma largura mínima para o botão */
+    white-space: nowrap;
 }
 
-/* Estilo para o botão quando o mouse passa por cima */
 .btn-assinar:hover {
     background: linear-gradient(to right, var(--cor-principal), var(--cor-secundaria));
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
