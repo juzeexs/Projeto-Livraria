@@ -893,3 +893,21 @@ border-radius: 10px;
     box-shadow: 0 4px 10px rgba(255, 0, 0, 0.808);
     color: var(--cor-texto);
 }
+
+/* Estilos para dispositivos com largura máxima de 767.98px (celulares) */
+@media (max-width: 767.98px) {
+    .campo-assinatura {
+        max-width: 320px; /* Reduz a largura máxima do contêiner */
+        gap: 8px; /* Diminui o espaço entre o input e o botão */
+        margin: 0 auto;
+    }
+    
+    .input-assinar {
+        padding: 8px 12px; /* Reduz o padding interno do campo */
+        min-width: 120px; /* Garante que o input não fique minúsculo */
+    }
+    
+    .btn-assinar {
+        padding: 8px 12px; /* Reduz o padding do botão */
+    }
+}
