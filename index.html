@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Livraria Elite - Seu Mundo de Histórias</title>
-    
     <meta name="theme-color" content="#212529">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -12,7 +11,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    
 </head>
 <body>
 
@@ -20,7 +18,6 @@
     <div class="animated-navbar-bg"></div>
     <div class="container">
         <a class="navbar-brand" href="#" data-page="home">Livraria</a>
-
         <div class="d-flex order-lg-2">
             <button class="btn btn-outline-light ms-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSettings" aria-controls="offcanvasSettings" aria-label="Configurações">
                 <i class="fas fa-cog"></i>
@@ -29,7 +26,6 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
-        
         <div class="collapse navbar-collapse order-lg-1" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
@@ -42,8 +38,6 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Gêneros
                     </a>
-                                            
-                                            <!--GÊNEROS-->
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item genre-item" href="#" data-genre-query="ficção científica">Ficção Científica</a></li>
                         <li><a class="dropdown-item genre-item" href="#" data-genre-query="romance">Romance</a></li>
@@ -56,7 +50,10 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-page="carrinho">Carrinho</a>
+                    <a class="nav-link position-relative" href="#" data-page="carrinho">
+                        Carrinho
+                        <span class="badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle cart-counter d-none">0</span>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" data-page="pedidos">Acompanhar Pedido</a>
@@ -73,7 +70,6 @@
                     </a>
                 </li>
             </ul>
-             <!--Barra de pesquisa /barra de navegação-->
             <form class="d-flex" id="search-form" role="search">
                 <input class="form-control form-control-custom me-2" type="search" placeholder="Buscar livros..." aria-label="Buscar livros..." id="search-input">
                 <button class="btn btn-cta" type="submit" aria-label="Pesquisar">Pesquisar</button>
@@ -83,39 +79,41 @@
 </nav>
 
 <main class="container my-5">
-                                <!--titulo e subtitulo-->
     <div id="home" class="page-section active">
         <section class="text-center mb-5 animated-section">
             <h1 class="display-3 text-white">Descubra as Melhores Histórias</h1>
             <p class="subtitulo">Uma seleção de títulos de alta qualidade, escolhidos para você.</p>
         </section>
-        
-        <!-------------------------------------------------------------------------------------------->
         <section id="livros-destaque" class="mb-5 animated-section">
             <h2 class="text-center mb-4 text-white">Lançamentos em Destaque</h2>
-            <div id="carrosselDestaques" class="carousel slide" data-bs-ride="carousel">
-                
+            <div id="carrosselDestaques" class="carousel slide animated-section" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carrosselDestaques" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#carrosselDestaques" data-bs-slide-to="1" aria-label="Slide 2"></button>
                     <button type="button" data-bs-target="#carrosselDestaques" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
-                                <!--carrocel principal do site -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw3Mms6RG8GFiFzbzU-Z3FOcP_eI6JS_0ydQ&usqp=CAU" class="img1" alt="Lançamento da Semana">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw3Mms6RG8GFiFzbzU-Z3FOcP_eI6JS_0ydQ&usqp=CAU" class="d-block w-100" alt="Lançamento da Semana">
                     </div>
                     <div class="carousel-item">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzSPrEslNlBqd35GKDfTrW15yig9Owl_MHDQ&usqp=CAU" class="img1" alt="Clássicos da Literatura">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzSPrEslNlBqd35GKDfTrW15yig9Owl_MHDQ&usqp=CAU" class="d-block w-100" alt="Clássicos da Literatura">
                     </div>
                     <div class="carousel-item">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuAHT-koQ52WfIe7JYDlnTrDcqg2Jfo_SGM_u3rh7z01fEUOzuxyRf4ZM&s=10" class="img1" alt="Coleção de Ficção Científica">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuAHT-koQ52WfIe7JYDlnTrDcqg2Jfo_SGM_u3rh7z01fEUOzuxyRf4ZM&s=10" class="d-block w-100" alt="Coleção de Ficção Científica">
                     </div>
                 </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carrosselDestaques" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carrosselDestaques" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Próximo</span>
+                </button>
             </div>
         </section>
-
-         <section id="livros-inicio-secao" class="mb-5 animated-section">
+        <section id="livros-inicio-secao" class="mb-5 animated-section">
             <h2 class="text-center mb-4 text-white">Livros Populares</h2>
             <div id="livros-inicio" class="row">
                 <div class="col-6 col-md-3 mb-4">
@@ -175,23 +173,33 @@
                     </div>
                 </div>
             </div>
-            </section>
-
- <div id="catalogo" class="page-section">
+        </section>
+        <section class="cta-section my-5 animated-section">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="mb-3">Receba nossas Ofertas Exclusivas!</h2>
+                    <p class="text-white-50">Assine nossa newsletter e seja o primeiro a saber sobre lançamentos, promoções e eventos especiais.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="input-assinar" placeholder="Digite seu e-mail" aria-label="Digite seu e-mail" aria-describedby="button-addon2" id="newsletter-input">
+                        <button class="btn-assinar" type="button" id="btn-assinar">Assinar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div id="catalogo" class="page-section">
         <section class="row animated-section">
             <h2 class="text-center mb-4 text-white">Nosso Catálogo Completo</h2>
             <div id="catalogo-livros" class="row">
             </div>
         </section>
     </div>
-    
     <div id="produto" class="page-section">
         <section class="row animated-section">
             <div id="detalhes-livro" class="col-12">
             </div>
         </section>
     </div>
-    
     <div id="carrinho" class="page-section">
         <h2 class="text-center text-white mb-4 animated-section">Seu Carrinho de Compras</h2>
         <div id="itens-carrinho" class="card p-4 bg-dark text-white animated-section">
@@ -206,7 +214,6 @@
             <button class="btn btn-cta btn-lg" id="btn-finalizar-compra" data-page="checkout">Finalizar Compra</button>
         </div>
     </div>
-
     <div id="checkout" class="page-section">
         <h2 class="text-center text-white mb-4 animated-section">Finalizar Compra</h2>
         <div class="card p-4 bg-dark text-white animated-section">
@@ -227,13 +234,10 @@
                     </label>
                 </div>
             </div>
-
             <div id="container-pagamento">
             </div>
         </div>
     </div>
-
-
     <div id="pedidos" class="page-section">
         <h2 class="text-center text-white mb-4 animated-section">Acompanhar Pedido</h2>
         <div class="row animated-section">
@@ -242,29 +246,28 @@
                     <i class="fas fa-sync-alt status-icon"></i>
                     <div>
                         <h5 class="mb-1 text-white">Pedido em Processamento</h5>
-                        <p class="text-muted mb-0">Seu pedido foi recebido e está sendo preparado para o envio. Isso pode levar até 24 horas.</p>
+                        <p class="">Seu pedido foi recebido e está sendo preparado para o envio. Isso pode levar até 24 horas.</p>
                     </div>
                 </div>
                 <div class="status-card d-flex align-items-center mb-3">
                     <i class="fas fa-truck status-icon"></i>
                     <div>
                         <h5 class="mb-1 text-white">Pedido em Transporte</h5>
-                        <p class="text-muted mb-0">Seu pedido já saiu de nosso centro de distribuição e está a caminho de sua residência. Em breve você receberá o código de rastreamento.</p>
+                        <p class="">Seu pedido já saiu de nosso centro de distribuição e está a caminho de sua residência. Em breve você receberá o código de rastreamento.</p>
                     </div>
                 </div>
                 <div class="status-card d-flex align-items-center mb-3">
                     <i class="fas fa-box-open status-icon"></i>
                     <div>
                         <h5 class="mb-1 text-white">Pedido Entregue</h5>
-                        <p class="text-muted mb-0">Seu pedido foi entregue com sucesso! Esperamos que você goste de sua nova leitura. </p>
+                        <p class="">Seu pedido foi entregue com sucesso! Esperamos que você goste de sua nova leitura. </p>
                     </div>
                 </div>
-                <p class="text-center text-muted mt-5">Última atualização: 08/09/2025 às 14:30</p>
+                <p class="">Última atualização: 08/09/2025 às 14:30</p>
             </div>
         </div>
     </div>
-
-<div id="perfil" class="page-section">
+    <div id="perfil" class="page-section">
         <h2 class="text-center text-white mb-4 animated-section">Meu Perfil</h2>
         <div class="row animated-section">
             <div class="col-md-8 mx-auto">
@@ -277,14 +280,12 @@
                         </div>
                     </div>
                     <hr class="border-secondary my-3">
-                    
                     <h5 class="text-white mb-3"><i class="fas fa-search me-2"></i> Histórico de Busca</h5>
                     <ul class="list-group list-group-flush bg-transparent" id="search-history-list">
                         <li class="list-group-item bg-dark text-white">Ficção Científica</li>
                         <li class="list-group-item bg-dark text-white">Livros de Mistério</li>
                     </ul>
                     <hr class="border-secondary my-3">
-                    
                     <h5 class="text-white mb-3"><i class="fas fa-shopping-bag me-2"></i> Minhas Compras</h5>
                     <ul class="list-group list-group-flush bg-transparent" id="purchase-history-list">
                         <li class="list-group-item bg-dark text-white d-flex justify-content-between align-items-center">
@@ -295,7 +296,6 @@
                         </li>
                     </ul>
                     <hr class="border-secondary my-3">
-                    
                     <h5 class="text-white mb-3"><i class="fas fa-book-reader me-2"></i> Minha Biblioteca Digital</h5>
                     <div id="digital-library" class="row">
                         <div class="col-6 col-md-4 mb-3">
@@ -321,28 +321,7 @@
             </div>
         </div>
     </div>
-
 </main>
-
-
-
-    <!--assinatura dos livros-->
-        <section class="cta-section my-5 animated-section">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <h2 class="mb-3">Receba nossas Ofertas Exclusivas!</h2>
-                    <p class="text-white-50">Assine nossa newsletter e seja o primeiro a saber sobre lançamentos, promoções e eventos especiais.</p>
-                    
-                                            
-                        <!---ASSINATURA-->
-                    <div class="div-assinatura">
-                        <input type="email" class="imput-assinatura" placeholder="Digite seu e-mail"  aria-label="Digite seu e-mail" aria-describedby="button-addon2" id="newsletter-input">
-                        <button class="btn btn-cta" type="button" id="btn-assinar">Assinar</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
 
 <footer class="container-fluid footer-custom">
     <div class="container py-5">
@@ -359,7 +338,6 @@
                     <a href="#" class="text-white-50"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
-
             <div class="col-md-2 text-center text-md-start mb-4 mb-md-0" id="footer-explore-column">
                 <h5 class="mb-3">Explorar</h5>
                 <ul class="list-unstyled">
@@ -369,7 +347,6 @@
                     <li><a class="text-white-50 text-decoration-none py-1 d-block" href="#">Novidades</a></li>
                 </ul>
             </div>
-
             <div class="col-md-3 text-center text-md-start mb-4 mb-md-0" id="footer-support-column">
                 <h5 class="mb-3">Atendimento</h5>
                 <ul class="list-unstyled">
@@ -377,15 +354,13 @@
                     <li><a class="text-white-50 text-decoration-none py-1 d-block" href="#">FAQ - Perguntas Frequentes</a></li>
                     <li><a class="text-white-50 text-decoration-none py-1 d-block" href="#">Política de Troca</a></li>
                     <li><a class="text-white-50 text-decoration-none py-1 d-block" href="#">Fale Conosco</a></li>
-</ul>
+                </ul>
             </div>
-
             <div class="col-md-3 text-center text-md-start" id="footer-contact-column">
                 <h5 class="mb-3">Contato & Pagamento</h5>
                 <p class="text-muted small"><i class="fas fa-map-marker-alt me-2"></i> Rua Fictícia, 123 - Centro, Porto Alegre - RS, Brasil</p>
                 <p class="text-muted small"><i class="fas fa-envelope me-2"></i> contato@livrariaelite.com</p>
-                <p class="text-muted small"><i class="fas fa-phone me-2"></i> (51) 99999-9999</p>
-                
+                <p class="text-muted small"><i class="fas fa-phone me-2"></i> (51) 98925-1530</p>
                 <h6 class="mt-4 mb-3 text-white">Formas de Pagamento</h6>
                 <div class="payment-icons d-flex justify-content-center justify-content-md-start flex-wrap">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png" alt="Visa" class="img-fluid me-2 mb-2" style="height: 25px;">
@@ -395,31 +370,27 @@
                 </div>
             </div>
         </div>
-
- <hr class="my-5 border-secondary">
-
+        <hr class="my-5 border-secondary">
         <div class="row align-items-center">
-            <div class="copywriter">
-                   <p class="copywriter">© <span id="current-year"></span> Livraria Elite. Todos os direitos reservados.</p>
+            <div class="titulo">
+                <p class="text-white-50 mb-0">© <span id="current-year"></span> Livraria Elite. Todos os direitos reservados.</p>
             </div>
-        
         </div>
     </div>
 </footer>
 
-    <div class="toast-container position-fixed top-0 end-0 p-3">
-        <div id="liveToast" class="toast custom-toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header custom-toast-header">
-                <i class="fas fa-book-open me-2"></i>
-                <strong class="me-auto" id="toast-title">Notificação</strong>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body custom-toast-body" id="toast-message">
-                Mensagem aqui.
-            </div>
+<div class="toast-container position-fixed top-0 end-0 p-3">
+    <div id="liveToast" class="toast custom-toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header custom-toast-header">
+            <i class="fas fa-book-open me-2"></i>
+            <strong class="me-auto" id="toast-title">Notificação</strong>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body custom-toast-body" id="toast-message">
+            Mensagem aqui.
         </div>
     </div>
-    
+</div>
 <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasSettings" aria-labelledby="offcanvasSettingsLabel">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasSettingsLabel">Configurações do Site</h5>
@@ -444,7 +415,6 @@
         </div>
     </div>
 </div>
-
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content bg-dark text-white">
@@ -464,7 +434,6 @@
                     </div>
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-cta">Entrar</button>
-
                     </div>
                 </form>
                 <form id="signup-form" class="d-none">
@@ -480,20 +449,11 @@
                         <label for="signup-password" class="form-label">Senha</label>
                         <input type="password" class="form-control form-control-custom" id="signup-password" required>
                     </div>
-                    <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-cta">Cadastrar</button>
-                        <button type="button" class="btn btn-outline-light" id="login-back-btn">Já tenho conta. Voltar ao login</button>
-                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="script.js"></script>
 </body>
