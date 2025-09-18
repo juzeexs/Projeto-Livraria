@@ -30,6 +30,7 @@ Funcionalidades Principais:
 <br>
 Para o usuário visitante:
 <br>
+<br>
 Visualização de livros disponíveis (com capa, título, autor, preço e sinopse);
 
 Filtros por categoria, autor e faixa de preço;
@@ -59,7 +60,7 @@ Relatórios de vendas .
 Tecnologias previstas:
 </strong>
 <br>
-
+<br>
 Frontend: HTML5, CSS3, JavaScript, Bootstrap e APIs.
 <br>
 <br>
