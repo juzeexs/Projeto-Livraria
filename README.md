@@ -98,6 +98,7 @@ JUSTIFICATIVA do CRIADOR:
 A ideia de criar um site de livraria surgiu da necessidade de tornar a compra de livros mais fácil e acessível para todo mundo.
 Hoje em dia, muita gente prefere comprar pela internet pela praticidade e pela possibilidade de encontrar uma variedade maior de títulos.
 Além disso, nem todo mundo tem uma livraria por perto, então um site ajuda a levar a leitura a mais pessoas, em qualquer lugar.
-
+<br>
+<br>
 Outro motivo é que o site facilita para quem quer pesquisar livros, comparar preços, ver avaliações e até descobrir novos autores.
 E para a própria livraria, estar presente online ajuda a alcançar mais clientes e aumentar as vendas.
