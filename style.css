@@ -1,3 +1,20 @@
+Conversa aberta. 1 mensagem não lida.
+
+Pular para o conteúdo
+Como usar o E-mail de Serviço Nacional de Aprendizagem Industrial com leitores de tela
+
+1 de 447
+(sem assunto)
+Caixa de entrada
+
+JOSÉ VÍTOR PINTO
+Anexos
+14:57 (há 0 minuto)
+para mim
+
+
+ 2 anexos
+  •  Anexos verificados pelo Gmail
 /* --- Animações --- */
 @keyframes colorChange {
     0% { background-position: 0% 50%; }
@@ -5,7 +22,6 @@
     100% { background-position: 0% 50%; }
 }
 
-/* Nova animação mais rápida para o tema multicolor */
 @keyframes rainbowThemeChange {
     0% { background-position: 0% 50%; }
     25% { background-position: 50% 100%; }
@@ -14,9 +30,57 @@
     100% { background-position: 0% 50%; }
 }
 
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInFromSide {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes glowPulse {
+    0% {
+        box-shadow: 0 0 10px var(--cor-principal), 0 0 20px var(--cor-principal);
+        opacity: 0.8;
+    }
+    50% {
+        box-shadow: 0 0 20px var(--cor-sombra-hover), 0 0 30px var(--cor-sombra-hover);
+        opacity: 1;
+    }
+    100% {
+        box-shadow: 0 0 10px var(--cor-principal), 0 0 20px var(--cor-principal);
+        opacity: 0.8;
+    }
 }
 
 /* --- Variáveis de Cores (Temas) --- */
@@ -24,50 +88,54 @@
     --cor-fundo: #110000;
     --cor-principal: #e50914; 
     --cor-secundaria: #270000;
+    --cor-terciaria: #3a0000;
     --cor-texto: #ffffff;
     --cor-texto-secundario: #a0a0a0;
     --cor-link-hover: #e50914;
-    --cor-fundo-transicao: linear-gradient(90deg, #000000, #8b0000, #000000, #8b0000, #000000);
+    --cor-fundo-transicao: linear-gradient(90deg, #000000, #d60000, #000000, #d60000, #000000);
     --cor-gradiente-borda: linear-gradient(to right, #8b0000, #000000);
     --cor-sombra-hover: rgb(255, 1, 13);
-    --cor-sombra-secundaria: rgba(221, 0, 0, 0.6);
+    --cor-sombra-secundaria: rgb(255, 0, 0);
 }
 
 .purple-theme { /* Tema Roxo */
     --cor-principal: #9932cc;
     --cor-secundaria: #010131;
+    --cor-terciaria: #1a0040;
     --cor-fundo: #000011;
     --cor-link-hover: #da70d6;
-    --cor-fundo-transicao: linear-gradient(90deg, #000033, #4b0082, #000033, #4b0082, #000033);
+    --cor-fundo-transicao: linear-gradient(90deg, #000024, #8800e9, #000024, #8800e9, #000024);
     --cor-gradiente-borda: linear-gradient(to right, #4f0077, #000000);
-    --cor-sombra-hover: rgb(153, 50, 204);
-    --cor-sombra-secundaria: rgba(29, 0, 49, 0.6);
+    --cor-sombra-hover: rgb(170, 0, 255);
+    --cor-sombra-secundaria: rgb(153, 0, 255);
 }
 
 .blue-theme { /* Tema Azul */
-    --cor-fundo: #0b1f3c;
-    --cor-principal: #4dc1f5;
-    --cor-secundaria: #1c3258;
+    --cor-fundo: #000e22;
+    --cor-principal: #0084c2;
+    --cor-secundaria: #001842;
+    --cor-terciaria: #002a60;
     --cor-texto: #c7d2e3;
     --cor-texto-secundario: #a0a0a0;
     --cor-link-hover: #6edff6;
-    --cor-fundo-transicao: linear-gradient(90deg, #0b1f3c, #1c3258, #0b1f3c, #1c3258, #0b1f3c);
+    --cor-fundo-transicao: linear-gradient(90deg, #1900a8, #001231, #1900a8, #001231, #1900a8);
     --cor-gradiente-borda: linear-gradient(to right, #4dc1f5, #1c3258);
-    --cor-sombra-hover: rgb(77, 193, 245);
-    --cor-sombra-secundaria: rgba(28, 50, 88, 0.6);
+    --cor-sombra-hover: rgb(0, 174, 255);
+    --cor-sombra-secundaria: rgb(0, 94, 255);
 }
 
 .rainbow-theme { /* NOVO TEMA: Multicolor */
     --cor-fundo: #0a0a0a;
-    --cor-principal: #e02f90; /* Inicia com a cor roxa/rosa */
-    --cor-secundaria: #1a1a1a;
+    --cor-principal: #e02f90;
+    --cor-secundaria: #10001f;
+    --cor-terciaria: #2a003f;
     --cor-texto: #ffffff;
     --cor-texto-secundario: #a0a0a0;
-    --cor-link-hover: #e50914; /* Hover para a cor vermelha */
-    --cor-fundo-transicao: linear-gradient(90deg, #e50914, #9932cc, #e50914, #9932cc);
+    --cor-link-hover: #e50914;
+    --cor-fundo-transicao: linear-gradient(90deg, #d60000, #8800e9, #1f0002, #1900a8);
     --cor-gradiente-borda: linear-gradient(to right, #e50914, #9932cc);
-    --cor-sombra-hover: rgba(229, 9, 20, 0.8);
-    --cor-sombra-secundaria: rgba(153, 50, 204, 0.6);
+    --cor-sombra-hover: rgb(255, 0, 200);
+    --cor-sombra-secundaria: rgb(170, 0, 255);
 }
 
 /* --- Estilos Gerais e Transições --- */
@@ -76,14 +144,14 @@ body {
     font-family: 'Montserrat', sans-serif;
     color: var(--cor-texto);
     overflow-x: hidden;
-    transition: background-color 0.5s ease; 
+    transition: background-color 0.5s ease;
 }
 
-/* Transições para variáveis CSS em todos os elementos que as utilizam */
 :root, .purple-theme, .blue-theme, .rainbow-theme {
     transition: 
         --cor-principal 0.7s ease-in-out,
         --cor-secundaria 0.7s ease-in-out,
+        --cor-terciaria 0.7s ease-in-out,
         --cor-fundo 0.7s ease-in-out,
         --cor-texto 0.7s ease-in-out,
         --cor-texto-secundario 0.7s ease-in-out,
@@ -92,6 +160,20 @@ body {
         --cor-gradiente-borda 0.7s ease-in-out,
         --cor-sombra-hover 0.7s ease-in-out,
         --cor-sombra-secundaria 0.7s ease-in-out;
+}
+
+.large-font {
+    font-size: 1.1em;
+}
+
+.animated-section {
+    opacity: 0;
+    animation: slideInUp 0.8s ease-out forwards;
+}
+
+/* Nova classe para a animação de entrada da direita */
+.slide-in-right {
+    animation: slideInRight 1.2s ease-out forwards;
 }
 
 /* --- Navegação --- */
@@ -116,25 +198,9 @@ body {
     transition: background 0.5s ease;
 }
 
-/* Sobrescreve a animação para o tema multicolor */
 .rainbow-theme .animated-navbar-bg {
-    animation: rainbowThemeChange 5s ease infinite; /* Tempo mais rápido */
-    background-size: 200% 200%; /* Gradiente mais compacto */
-}
-
-/* Adiciona também o efeito para a engrenagem (Offcanvas) */
-.offcanvas-header,
-.offcanvas-body {
-    background-color: var(--cor-fundo);
-    transition: background-color 0.5s ease;
-}
-
-/* Adiciona a animação de fundo ao offcanvas no tema multicolor */
-.rainbow-theme .offcanvas {
-    background: var(--cor-fundo-transicao);
-    background-size: 400% 400%;
     animation: rainbowThemeChange 5s ease infinite;
-    transition: none; /* Desativa a transição suave para a animação */
+    background-size: 200% 200%;
 }
 
 .navbar-custom .navbar-brand {
@@ -143,11 +209,8 @@ body {
     font-weight: 700;
     font-size: 1.8rem;
     z-index: 1;
-    transition: color 0.5s ease;
-    /* --- INÍCIO DA MUDANÇA: Sombra Neon para o título --- */
     text-shadow: 0 0 5px var(--cor-principal), 0 0 10px var(--cor-principal);
     transition: color 0.5s ease, text-shadow 0.7s ease-in-out;
-    /* --- FIM DA MUDANÇA --- */
 }
 
 .navbar-custom .navbar-brand::after {
@@ -183,6 +246,76 @@ body {
     outline: none;
 }
 
+/* --- Offcanvas (Configurações e Login) --- */
+.offcanvas {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    background-color: var(--cor-fundo);
+    transition: background-color 0.5s ease;
+}
+
+.rainbow-theme .offcanvas {
+    background: var(--cor-fundo-transicao);
+    background-size: 400% 400%;
+    animation: rainbowThemeChange 5s ease infinite;
+    transition: none;
+}
+
+.offcanvas-header {
+    background-color: var(--cor-secundaria);
+    border-bottom: 2px solid var(--cor-principal);
+    padding: 20px 25px;
+    border-top-left-radius: 20px;
+    transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+
+.offcanvas-header .offcanvas-title {
+    color: var(--cor-principal);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.offcanvas-header .btn-close {
+    filter: invert(1);
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.offcanvas-header .btn-close:hover {
+    opacity: 1;
+}
+
+.offcanvas-body {
+    padding: 20px 25px;
+}
+
+.offcanvas-body h5 {
+    color: var(--cor-texto);
+    margin-bottom: 10px;
+}
+
+.offcanvas-body .form-label {
+    color: var(--cor-texto-secundario);
+}
+
+.offcanvas-body .form-control {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--cor-texto);
+}
+
+.offcanvas-body .btn-primary {
+    background-color: var(--cor-principal);
+    border-color: var(--cor-principal);
+    font-weight: 700;
+}
+
+.offcanvas-body .btn-primary:hover {
+    background-color: var(--cor-sombra-hover);
+    border-color: var(--cor-sombra-hover);
+}
+
 /* --- Seções e Conteúdo Principal --- */
 .page-section {
     display: none;
@@ -192,11 +325,7 @@ body {
 
 .page-section.active {
     display: block;
-    opacity: 1;
-}
-
-.animated-section {
-    animation: fadeIn 0.8s ease-out forwards;
+    animation: fadeIn 1s forwards;
 }
 
 .animated-lead-text {
@@ -209,7 +338,6 @@ body {
     transition: background-image 0.5s ease;
 }
 
-/* Sobrescreve a animação de texto para o tema multicolor */
 .rainbow-theme .animated-lead-text {
     animation: rainbowThemeChange 5s ease infinite;
     background-size: 200% 100%;
@@ -219,11 +347,14 @@ body {
 .carousel {
     position: relative;
     padding-bottom: 40px;
+    opacity: 0;
+    animation: slideInFromSide 1.2s ease-out forwards;
 }
 
-/* Deixa o carrossel mais suave */
-.carousel-item {
-    transition: transform 0.6s ease-in-out; 
+/* AlteraÃ§Ã£o principal: Oculta as setas laterais */
+.carousel-control-prev,
+.carousel-control-next {
+    display: none !important;
 }
 
 .carousel-indicators {
@@ -244,58 +375,72 @@ body {
     transition: background-color 0.5s ease;
 }
 
-/* --- CORREÇÃO: Proporção do Carrossel --- */
 #carrosselDestaques {
-    max-height: initial; 
+    max-height: initial;
+    position: relative;
 }
 
 #carrosselDestaques .carousel-inner {
-    border-radius: 10px;
+    border-radius: 15px;
     overflow: hidden;
-    aspect-ratio: 16 / 9; 
+    border: 5px solid transparent;
+    background: var(--cor-fundo-transicao) border-box;
+    background-size: 400% 400%;
+    animation: rainbowThemeChange 10s ease infinite;
+    border-image-slice: 1;
+    transition: height 0.6s ease-in-out;
+}
+
+#carrosselDestaques .carousel-item {
+    transition: transform 0.6s ease-in-out;
+    height: 100%;
 }
 
 #carrosselDestaques .carousel-item img {
-    height: 100%;
     width: 100%;
-    /* --- INÍCIO DA MUDANÇA: Ajuste de imagem do carrossel --- */
-    object-fit: cover; /* A imagem preenche a área, cortando o excesso */
-    /* --- FIM DA MUDANÇA --- */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+    display: block;
 }
 
 .carousel-caption {
-    background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 8px;
-    padding: 15px;
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
-}
-
-.img1{
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px 30px;
     border-radius: 15px;
-
-
-
-}
-/*subtitulo*/
-.subtitulo{
-   
-
+    max-width: 90%;
+    border: 2px solid transparent;
+    border-image: var(--cor-gradiente-borda) 1;
+    animation: fadeIn 1.5s ease-out forwards 1.2s;
+    opacity: 0;
 }
 
-    /*copywriter*/
-.copywriter{
-    text-align: center ;
-
+.carousel-caption h5 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-shadow: 0 0 10px var(--cor-principal);
+    color: var(--cor-principal);
 }
 
-/* --- Chamada para Ação (CTA) e Botões --- */
+.carousel-caption p {
+    font-size: 1rem;
+    color: var(--cor-texto-secundario);
+}
+
+/* --- Chamada para AÃ§Ã£o (CTA) e BotÃµes --- */
 .cta-section {
     background-color: var(--cor-secundaria);
     border-radius: 10px;
     padding: 40px;
     text-align: center;
     transition: background-color 0.5s ease;
+    opacity: 0;
+    animation: slideInUp 1s ease-out forwards;
 }
 
 .cta-section h2 {
@@ -305,15 +450,39 @@ body {
     transition: color 0.5s ease;
 }
 
+.input-group.newsletter-footer-input .form-control {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--cor-texto);
+    border-radius: 5px 0 0 5px;
+}
+
+.input-group.newsletter-footer-input .form-control:focus {
+    box-shadow: none;
+    border-color: var(--cor-principal);
+}
+
+.input-group.newsletter-footer-input .btn {
+    background-color: var(--cor-principal);
+    border-color: var(--cor-principal);
+    color: var(--cor-texto);
+    border-radius: 0 5px 5px 0;
+}
+
+.input-group.newsletter-footer-input .btn:hover {
+    background-color: var(--cor-link-hover);
+    border-color: var(--cor-link-hover);
+}
+
 .form-control-custom {
-    background-color: #333;
-    border: 1px solid #555;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     color: var(--cor-texto);
     transition: all 0.5s ease;
 }
 
 .form-control-custom:focus {
-    background-color: #444;
+    background-color: rgba(255, 255, 255, 0.1);
     border-color: var(--cor-principal);
     box-shadow: 0 0 0 0.25rem rgba(229, 9, 20, 0.25);
 }
@@ -335,65 +504,109 @@ body {
 
 /* --- Cards de Livros --- */
 .card-livro {
-    margin-bottom: 30px;
-    border: none;
-    border-radius: 10px;
     background-color: var(--cor-secundaria);
-    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    opacity: 0; 
-    transform: translateY(20px);
-    position: relative;
-    z-index: 1;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border: none;
+    border-radius: 15px;
+    
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(0, 0, 0, 0.2);
+    
+    overflow: hidden;
+    
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+    
+    padding: 10px; 
+    
+    width: 300px;
+    
+    height: 400px; 
 }
 
-.card-livro.animated {
-    opacity: 1; 
-    transform: translateY(0);
+.card-livro img {
+    width: 250px;
+    height: 280px;
+    
+    object-fit: cover;
+    border-radius: 10px;
+    
+    margin-bottom: 10px;
+    margin-top: 5px;
+    
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 }
+
+.card-livro .card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-grow: 1;
+}
+
+.card-livro .card-title {
+    color: #ffffff;
+    
+    font-size: 1.3em;
+    font-weight: 700;
+    
+    margin-bottom: 5px; 
+    
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.card-livro .card-text {
+    color: #f0f0f0;
+    
+    font-size: 1em;
+    margin-bottom: 5px; 
+}
+
+.card-livro:nth-child(1) { animation: slideInFromSide 0.6s ease-out forwards; }
+.card-livro:nth-child(2) { animation: slideInFromSide 0.8s ease-out forwards; }
+.card-livro:nth-child(3) { animation: slideInFromSide 1s ease-out forwards; }
+.card-livro:nth-child(4) { animation: slideInFromSide 1.2s ease-out forwards; }
+.card-livro:nth-child(5) { animation: slideInFromSide 1.4s ease-out forwards; }
+.card-livro:nth-child(6) { animation: slideInFromSide 1.6s ease-out forwards; }
 
 .card-livro:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 0 25px var(--cor-sombra-hover), 
-                0 15px 30px var(--cor-sombra-secundaria);
+    transform: translateY(-12px);
+    box-shadow: 0 15px 40px rgba(var(--cor-sombra-hover-rgb), 0.6), 
+                0 0 20px rgba(var(--cor-principal-rgb), 0.4);
 }
 
-.card-livro .card-img-top {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    height: 220px;
-    object-fit: cover;
-    transition: height 0.5s ease;
-}
-
-.card-title {
-    font-weight: 700;
-    color: var(--cor-principal);
-    transition: color 0.5s ease;
-}
-
-.card-text {
-    color: var(--cor-texto-secundario);
-    transition: color 0.5s ease;
-}
-
-.card-price {
-    font-weight: 700;
-    margin-top: auto;
-    font-size: 1.2rem;
-}
-
+/* --- Preços --- */
 .price-old {
     color: #888;
     text-decoration: line-through;
     font-weight: 400;
-    font-size: 0.9em;
+    font-size: 1em;
 }
 
 .price-new {
     color: var(--cor-principal);
-    font-size: 1.5em; 
+    font-size: 1.8em;
     transition: color 0.5s ease;
+}
+
+/* --- Horizontal Scroll Container --- */
+.horizontal-scroll-container {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 20px;
+    gap: 20px;
+}
+
+.horizontal-scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+.horizontal-scroll-container {
+    scrollbar-width: none;
 }
 
 /* --- Carrinho e Pedidos --- */
@@ -574,16 +787,15 @@ body {
     opacity: 1;
 }
 
-/* --- Estilos da Newsletter no Rodapé --- */
 .newsletter-footer-input .form-control-custom {
     background-color: rgba(255, 255, 255, 0.1);
     border: none;
-    color: var(--cor-texto); /* Usa a variável para cor do texto principal */
-    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease; /* Adiciona transições */
+    color: var(--cor-texto);
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
 }
 
 .newsletter-footer-input .form-control-custom::placeholder {
-    color: rgba(255, 255, 255, 0.5); /* Usa a cor de placeholder do cabeçalho */
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .newsletter-footer-input .form-control-custom:focus {
@@ -626,128 +838,100 @@ body {
     }
 }
 
-/* --- Chamada para Ação (CTA) e Botões --- */
-.cta-section {
-    background-color: var(--cor-secundaria);
-    border-radius: 10px;
-    padding: 40px;
+.titulo {
     text-align: center;
-    transition: background-color 0.5s ease;
 }
 
-.cta-section h2 {
-    color: var(--cor-principal);
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    transition: color 0.5s ease;
+.carousel-inner-border {
+    border: 3px solid transparent; 
+    box-shadow: linear-gradient(45deg, var(--cor-principal), var(--cor-secundaria)); 
+    border-image-slice: 1; 
 }
 
-/* Modificação no input da seção CTA */
-.cta-section .form-control-custom {
-    background-color: rgba(255, 255, 255, 0.05); /* Valor da transparência reduzido para 5% */
-    border: 1px solid rgba(255, 255, 255, 0.2); /* Borda mais transparente */
-    color: var(--cor-texto);
-    transition: all 0.5s ease;
+.carousel-inner {
+    border: 3px solid transparent;
+    border-image: linear-gradient(45deg, var(--cor-principal), var(--cor-secundaria));
+    border-image-slice: 1;
 }
 
-.cta-section .form-control-custom:focus {
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.slide-in-right {
+    animation: slideInFromRight 1.2s ease-out forwards;
+}
+
+/* Estilo para o contêiner que agrupa o input e o botão */
+.campo-assinatura {
+    display: flex;
+    align-items: stretch;
+}
+
+/* Container que alinha os elementos */
+.campo-assinatura {
+    display: flex;
+    align-items: stretch; /* Garante que input e botão tenham a mesma altura */
+    gap: 10px; /* Adiciona um espaço de 10px entre os elementos */
+    width: 100%; /* Ajusta a largura total do container */
+}
+
+/* Container que alinha os elementos */
+.campo-assinatura {
+    display: flex;
+    align-items: stretch; /* Garante que input e botão tenham a mesma altura */
+    gap: 10px; /* Adiciona um espaço de 10px entre os elementos */
+    width: 100%; /* Ajusta a largura total do container */
+    max-width: 500px; /* Opcional: define uma largura máxima para o grupo input+botão */
+    margin: 0 auto; /* Opcional: centraliza o grupo se max-width for usado */
+}
+
+/* Estilo para a caixa de input */
+.input-assinar {
     background-color: rgba(255, 255, 255, 0.1);
-    border-color: var(--cor-principal);
-    box-shadow: 0 0 0 0.25rem rgba(229, 9, 20, 0.25);
-}
-
-.btn-cta {
-    background: var(--cor-gradiente-borda);
     border: none;
     color: var(--cor-texto);
-    font-weight: 700;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease;
+    padding: 10px 20px;
+    flex: 1; /* Permite que o input preencha o espaço restante, mas respeitando o botão */
+    min-width: 150px; /* Opcional: Garante que o input não fique muito pequeno */
+    box-sizing: border-box; /* Garante que padding e borda não aumentem a largura total */
+border-radius: 10px;
+
 }
 
-.btn-cta:hover {
+/* Estilo do input quando está em foco */
+.input-assinar:focus {
+    outline: none; /* Remove a borda azul padrão */
+    background-color: rgba(255, 255, 255, 0.2); /* Opcional: escurece o fundo */
+border-radius: 10px;
+}
+
+/* Estilos principais do botão */
+.btn-assinar {
+    background: var(--cor-gradiente-borda);
+    color: var(--cor-texto);
+    padding: 10px 20px;
+    border: none;
+    font-weight: 700;
+    border-radius: 10px;
+    cursor: pointer;
+    white-space: nowrap; /* Impede que o texto quebre para a próxima linha */
+    /* Removemos a largura fixa do botão para que ele se ajuste ao texto */
+    /* min-width: 100px;  Opcional: se precisar de uma largura mínima para o botão */
+}
+
+/* Estilo para o botão quando o mouse passa por cima */
+.btn-assinar:hover {
     background: linear-gradient(to right, var(--cor-principal), var(--cor-secundaria));
-    transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     color: var(--cor-texto);
 }
-
-
-/* Adicione este bloco de código ao seu arquivo style.css */
-
-.large-font {
-    font-size: 1.1em; /* 10% maior que o tamanho base */
-}
-
-/* Opcional: Efeito de transição suave */
-body, body p, body h1, body h2, body h3 {
-    transition: font-size 0.3s ease;
-}
-
-
-.horizontal-scroll-container {
-    display: flex; /* Aligns cards in a row */
-    overflow-x: auto; /* Enables horizontal scrolling */
-    white-space: nowrap; /* Prevents wrapping to the next line */
-    padding-bottom: 20px; /* Adds space for the scrollbar on some browsers */
-    gap: 20px; /* Creates space between the cards */
-}
-
-/* Optional: Hides the scrollbar for a cleaner look */
-.horizontal-scroll-container::-webkit-scrollbar {
-    display: none;
-}
-
-/* Optional: For Firefox */
-.horizontal-scroll-container {
-    scrollbar-width: none;
-}
-
-.carousel-caption {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente para o texto */
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 80%;
-}
-
-.carousel-caption {
-    /* ... (outros estilos existentes) ... */
-    padding: 15px 25px; /* Ajuste o padding se o botão precisar de mais espaço */
-    background-color: rgba(0, 0, 0, 0.7); /* Pode deixar um pouco mais escuro se quiser */
-}
-
-#carrosselDestaques .carousel-inner {
-    border-radius: 10px;
-    overflow: hidden;
-    aspect-ratio: 16 / 9; /* Mantém a proporção widescreen 16:9 */
-}
-
-
-.imput-assinatura{
-
-    width:500px ;
-    height: 40px;
-    border-radius:10px ;
-    border: 2px solid rgb(255, 0, 212);
-    background: transparent;     
-    color: white;
-}
-
-.imput-assinatura:hover{
-     box-shadow: 0 0 25px var(--cor-sombra-hover), 
-                0 15px 30px var(--cor-sombra-secundaria);
-   
-}
-
-.div-assinatura{
-    text-align: center;
-color: var(--cor-texto);
-
-
-}
-
 
