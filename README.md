@@ -81,11 +81,11 @@ Benefícios do projeto:
 <br>
 <br>
 Aumento da visibilidade da livraria;
-
+<br>
 Facilidade de acesso aos produtos;
-
+<br>
 Experiência de compra simplificada;
-
+<br>
 possibilidade de autores ou editoras mostrarem seus livros 
 no site para todos verem.
  <br>
