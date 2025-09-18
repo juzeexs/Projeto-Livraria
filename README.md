@@ -27,6 +27,7 @@ Além disso, o site contará com um sistema de cadastro e login de usuários, pa
 Funcionalidades Principais:
 </strong>
 <br>
+<br>
 Para o usuário visitante:
 <br>
 Visualização de livros disponíveis (com capa, título, autor, preço e sinopse);
