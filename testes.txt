@@ -1,0 +1,188 @@
+describe("Teste para entrar na pagina inicial", () => {
+  it("deve entrar na pagina inicial", () => {
+    cy.visit("index.html");
+
+   
+    });
+});
+  
+
+describe("Teste de dropdawn", () => {
+  it("testando dropdown", () => {
+    cy.visit("index.html");
+
+    it("teste de dropdown", () =>{
+
+  cy.get('#seletor-do-Dropdown')
+
+    });
+    });
+  });
+
+describe("teste de hovers",() => {
+  it("testando hovers", () =>{
+    cy.visit("index.html");
+
+    it("testando hovers", () =>{
+        cy.get('#card-livro:hover')
+
+    })
+
+  })
+})
+
+
+describe("teste de botões",() => {
+  it("testando botões nos cards", () =>{
+    cy.visit("index.html");
+  
+    it("testando botões",() =>{
+
+      cy.get('#livros-inicio > :nth-child(1) > .card > .card-body > .btn')
+
+
+
+
+
+    })
+  })
+})
+
+
+describe("teste de botão de voltar no menu de adicionar o livro ao carrinho", () => {
+  it("testando botão de voltar", () =>{
+    cy.visit("index.html");
+
+    it("testando botão de voltar", () =>{
+
+      cy.get('.col-md-8 > .btn-outline-secondary')
+
+
+    })
+  })
+})
+
+
+describe("teste de botão adicionar ao carrinho" ,() => {
+  it("testando botão adicionar ao carrinho", () =>{
+    cy.visit("index.html");
+
+    it("testando botão adicionar ao carrinho", () =>{
+
+      cy.get('.col-md-8 > .btn-cta')
+
+
+
+
+
+    })
+  })
+})
+
+
+describe("teste de click nos cards", () => {
+  it("testando click nos cards", () =>{
+    cy.visit("index.html");
+
+    it("testando click nos cards", () =>{
+      cy.get("cy.get('#livros-inicio > :nth-child(1) > .card > .card-body').click()")
+
+
+
+
+    })
+
+  })
+
+})
+
+
+describe("teste de imput ", ()=> {
+  it("testando o imput ",() => {
+    cy.visit("index.html");
+
+    it("testando o imput", () =>{
+      cy.get('#newsletter-input')
+      
+      it("testando botão de assinar",()=>{
+        cy.get('#btn-assinar')
+
+      })
+  
+    })
+  })
+})
+
+
+
+describe("teste de login", () => {
+  it("testando login", () =>{
+    cy.visit("index.html");
+
+    it("testando login de email", () =>{
+      cy.get('#login-email')
+
+      it("testando senha", () =>{
+        cy.get('#login-password')
+
+        it("testando botão de entrar", () =>{
+          cy.get('#login-form > .d-grid > .btn')
+
+
+        })
+      })
+    })
+  })
+})
+
+describe("teste de cores", () => {
+  it("testando seleção de cores", () =>{
+    cy.visit("index.html");
+
+    it("testando vermelho", () =>{
+      cy.get('[data-theme="default"]')
+
+      it("testando azul", () =>{
+        cy.get('[data-theme="blue"]')
+
+      it("testando roxo", () =>{
+        cy.get('[data-theme="purple"]')
+
+      it("multicolor", () =>{
+        cy.get('[data-theme="rainbow"]')
+
+
+          })
+        })
+
+      })
+
+    })
+  })
+})
+
+
+describe("testando acessibilidade", () => {
+  it("testando acessibilidade", () =>{
+    cy.visit("index.html");
+
+    it("testando acessibilidade", () =>{
+      cy.get('[data-font="normal"]')
+
+
+
+
+    })
+
+    it("testando acessibilidade", () =>{
+      cy.get('[data-font="large"]')
+    })
+
+
+  })
+
+
+})
+
+
+
