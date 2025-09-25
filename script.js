@@ -724,3 +724,101 @@ window.onload = function() {
         });
     }
 };
+
+/**
+ * @file settings-script.js
+ * @description Gerencia a lógica do menu de configurações, permitindo ao usuário
+ * alterar o tema visual e o tamanho da fonte do site, salvando as preferências
+ * no localStorage para persistência entre as visitas.
+ */
+
+// Executa o script apenas quando o DOM estiver completamente carregado.
+document.addEventListener('DOMContentLoaded', () => {
+
+  // --- Seletores do DOM ---
+  // Obtém referências para os botões de controle no menu de configurações.
+  const themeButtons = document.querySelectorAll('#offcanvasSettings [data-theme]');
+  const fontButtons = document.querySelectorAll('#offcanvasSettings [data-font]');
+
+  /**
+   * Aplica um tema visual ao corpo do documento.
+   * @param {string} themeName - O nome do tema a ser aplicado (ex: 'purple', 'blue').
+   */
+  const applyTheme = (themeName) => {
+    // 1. Limpa temas anteriores: Remove qualquer classe que termine com '-theme'.
+    document.body.className = document.body.className.replace(/\b\w+-theme\b/g, '').trim();
+
+    // 2. Adiciona o novo tema, se não for o padrão.
+    if (themeName !== 'default') {
+      document.body.classList.add(`${themeName}-theme`);
+    }
+
+    // 3. Salva a preferência no localStorage.
+    localStorage.setItem('selectedTheme', themeName);
+
+    // 4. Atualiza o estado 'active' nos botões para feedback visual.
+    updateButtonActiveState(themeButtons, 'theme', themeName);
+  };
+
+  /**
+   * Aplica o tamanho da fonte ao corpo do documento.
+   * @param {string} fontSize - O tamanho da fonte ('normal' ou 'large').
+   */
+  const applyFontSize = (fontSize) => {
+    // 1. Usa 'toggle' para adicionar/remover a classe 'large-font' de forma eficiente.
+    document.body.classList.toggle('large-font', fontSize === 'large');
+
+    // 2. Salva a preferência no localStorage.
+    localStorage.setItem('selectedFontSize', fontSize);
+    
+    // 3. Atualiza o estado 'active' nos botões.
+    updateButtonActiveState(fontButtons, 'font', fontSize);
+  };
+
+  /**
+   * Atualiza a classe 'active' em um grupo de botões.
+   * @param {NodeListOf<Element>} buttons - A lista de botões a ser atualizada.
+   * @param {string} datasetKey - A chave do dataset a ser comparada (ex: 'theme' ou 'font').
+   * @param {string} activeValue - O valor que deve corresponder para o botão ser ativo.
+   */
+  const updateButtonActiveState = (buttons, datasetKey, activeValue) => {
+    buttons.forEach(button => {
+      button.classList.toggle('active', button.dataset[datasetKey] === activeValue);
+    });
+  };
+
+  /**
+   * Carrega as configurações salvas do localStorage quando a página inicia.
+   */
+  const loadSettings = () => {
+    // Carrega o tema salvo ou usa 'default' como padrão.
+    const savedTheme = localStorage.getItem('selectedTheme') || 'default';
+    
+    // Carrega o tamanho da fonte salvo ou usa 'normal' como padrão.
+    const savedFontSize = localStorage.getItem('selectedFontSize') || 'normal';
+
+    applyTheme(savedTheme);
+    applyFontSize(savedFontSize);
+  };
+
+  // --- Inicialização dos Event Listeners ---
+
+  // Adiciona um listener de clique para cada botão de tema.
+  themeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      applyTheme(button.dataset.theme);
+    });
+  });
+
+  // Adiciona um listener de clique para cada botão de fonte.
+  fontButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      applyFontSize(button.dataset.font);
+    });
+  });
+
+  // --- Ponto de Entrada ---
+  // Carrega as configurações do usuário assim que o script é executado.
+  loadSettings();
+
+});

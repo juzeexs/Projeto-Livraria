@@ -1120,3 +1120,108 @@ hr{
 h5{
     text-align: center;
 }
+
+/* ============================================= */
+/* == ESTILOS PARA O MENU DE CONFIGURAÇÕES    == */
+/* ============================================= */
+
+/* Estilo principal do menu Off-canvas */
+#offcanvasSettings {
+  background-color: #212529; /* Cor de fundo escura */
+  color: #dee2e6; /* Cor do texto clara */
+  border-left: 1px solid #495057;
+  box-shadow: -5px 0px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Cabeçalho do menu */
+#offcanvasSettings .offcanvas-header {
+  border-bottom: 1px solid #495057;
+  padding: 1rem 1.5rem;
+}
+
+#offcanvasSettings .offcanvas-header h5 {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Botão de fechar (X) */
+#offcanvasSettings .btn-close {
+  background-color: #6c757d; /* Cor do botão para melhor contraste */
+  border-radius: 50%;
+  filter: invert(1) grayscale(100%) brightness(200%); /* Deixa o 'X' branco */
+}
+
+/* Corpo do menu */
+#offcanvasSettings .offcanvas-body {
+  padding: 1.5rem;
+}
+
+/* Títulos das seções (Tema Visual, Tamanho da Fonte) */
+#offcanvasSettings h6 {
+  color: #adb5bd;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+/* Estilo para os botões de opção */
+#offcanvasSettings .btn-outline-secondary {
+  color: #adb5bd;
+  border-color: #495057;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Efeito ao passar o mouse sobre os botões */
+#offcanvasSettings .btn-outline-secondary:hover {
+  background-color: #495057;
+  color: #fff;
+  border-color: #6c757d;
+}
+
+/* Estilo para o botão que está ativo (selecionado) */
+#offcanvasSettings .btn-outline-secondary.active,
+#offcanvasSettings .btn-outline-secondary:focus {
+  background-color: #0d6efd; /* Cor de destaque do Bootstrap */
+  color: #fff;
+  border-color: #0d6efd;
+  box-shadow: none; /* Remove o brilho padrão do foco */
+}
+
+/* ============================================= */
+/* ==      CLASSES DE TEMA E FONTE            == */
+/* ============================================= */
+
+/* --- Temas de Cores --- */
+/* Estas classes serão aplicadas na tag <body> pelo JavaScript */
+
+/* Tema Roxo */
+.purple-theme {
+  --bs-primary: #8e44ad;
+  --bs-secondary: #9b59b6;
+  --bs-dark: #2c3e50;
+  --bs-light: #ecf0f1;
+}
+
+/* Tema Azul */
+.blue-theme {
+  --bs-primary: #2980b9;
+  --bs-secondary: #3498db;
+  --bs-dark: #2c3e50;
+  --bs-light: #ecf0f1;
+}
+
+/* Tema Arco-íris (Exemplo com gradiente) */
+.rainbow-theme .btn-cta, 
+.rainbow-theme .navbar {
+  background: linear-gradient(90deg, rgba(255,0,0,1) 0%, rgba(255,154,0,1) 10%, rgba(208,222,33,1) 20%, rgba(79,220,74,1) 30%, rgba(63,218,216,1) 40%, rgba(47,201,226,1) 50%, rgba(28,127,238,1) 60%, rgba(95,21,242,1) 70%, rgba(186,12,248,1) 80%, rgba(251,7,217,1) 90%, rgba(255,0,0,1) 100%);
+  color: #fff;
+  border: none;
+}
+
+/* --- Tamanho da Fonte --- */
+/* Classe para aumentar a fonte geral do site */
+body.large-font {
+  font-size: 1.15rem; /* Aumenta a fonte base em 15% */
+}
