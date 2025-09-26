@@ -186,7 +186,7 @@ describe("testando acessibilidade", () => {
 
 })
 
-
+//CT12//
 describe("testando botão de zoom do mapa", () => {
   it("testando botão de zoom do mapa", () =>{
     cy.visit("index.html");
@@ -200,7 +200,7 @@ describe("testando botão de zoom do mapa", () => {
 
 })
 
-
+//CT13//
 describe("testando botão de zoom out do mapa", () => {
   it("testando botão de zoom out do mapa", () =>{
     cy.visit("index.html");
@@ -214,7 +214,7 @@ describe("testando botão de zoom out do mapa", () => {
   })
 })
 
-
+//CT14//
 describe("testando mapa", () => {
   it("testando mapa", () =>{
     cy.visit("index.html");
@@ -229,7 +229,7 @@ it("testando mapa", () =>{
 })
 
 
-
+//  CT15//
 describe("testando se existe cards no site", () => {
   it("testando se existe cards no site", () =>{
     cy.visit("index.html");
