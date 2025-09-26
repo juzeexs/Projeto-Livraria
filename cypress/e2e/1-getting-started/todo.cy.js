@@ -1,3 +1,4 @@
+  //CT01//
 describe("Teste para entrar na pagina inicial", () => {
   it("deve entrar na pagina inicial", () => {
     cy.visit("index.html");
@@ -6,7 +7,7 @@ describe("Teste para entrar na pagina inicial", () => {
     });
 });
   
-
+//CT02//
 describe("Teste de dropdawn", () => {
   it("testando dropdown", () => {
     cy.visit("index.html");
@@ -18,7 +19,7 @@ describe("Teste de dropdawn", () => {
     });
     });
   });
-
+//CT03//
 describe("teste de hovers",() => {
   it("testando hovers", () =>{
     cy.visit("index.html");
@@ -31,7 +32,7 @@ describe("teste de hovers",() => {
   })
 })
 
-
+//CT04//
 describe("teste de botões",() => {
   it("testando botões nos cards", () =>{
     cy.visit("index.html");
@@ -48,7 +49,7 @@ describe("teste de botões",() => {
   })
 })
 
-
+//CT05//
 describe("teste de botão de voltar no menu de adicionar o livro ao carrinho", () => {
   it("testando botão de voltar", () =>{
     cy.visit("index.html");
@@ -62,7 +63,7 @@ describe("teste de botão de voltar no menu de adicionar o livro ao carrinho", (
   })
 })
 
-
+//CT06//
 describe("teste de botão adicionar ao carrinho" ,() => {
   it("testando botão adicionar ao carrinho", () =>{
     cy.visit("index.html");
@@ -79,7 +80,7 @@ describe("teste de botão adicionar ao carrinho" ,() => {
   })
 })
 
-
+//CT07//
 describe("teste de click nos cards", () => {
   it("testando click nos cards", () =>{
     cy.visit("index.html");
@@ -96,7 +97,7 @@ describe("teste de click nos cards", () => {
 
 })
 
-
+//CT08//
 describe("teste de imput ", ()=> {
   it("testando o imput ",() => {
     cy.visit("index.html");
@@ -114,7 +115,7 @@ describe("teste de imput ", ()=> {
 })
 
 
-
+//CT09//
 describe("teste de login", () => {
   it("testando login", () =>{
     cy.visit("index.html");
@@ -135,6 +136,7 @@ describe("teste de login", () => {
   })
 })
 
+//CT10//
 describe("teste de cores", () => {
   it("testando seleção de cores", () =>{
     cy.visit("index.html");
@@ -161,7 +163,7 @@ describe("teste de cores", () => {
   })
 })
 
-
+//CT11//
 describe("testando acessibilidade", () => {
   it("testando acessibilidade", () =>{
     cy.visit("index.html");
@@ -184,3 +186,61 @@ describe("testando acessibilidade", () => {
 
 })
 
+
+describe("testando botão de zoom do mapa", () => {
+  it("testando botão de zoom do mapa", () =>{
+    cy.visit("index.html");
+
+    it("testando botão de zoom do mapa", () =>{
+      cy.get('.ol-zoom-in')
+
+    })
+      
+  })
+
+})
+
+
+describe("testando botão de zoom out do mapa", () => {
+  it("testando botão de zoom out do mapa", () =>{
+    cy.visit("index.html");
+
+    it("testando botão de zoom out do mapa", () =>{
+      cy.get('.ol-zoom-out')
+
+
+
+    })
+  })
+})
+
+
+describe("testando mapa", () => {
+  it("testando mapa", () =>{
+    cy.visit("index.html");
+
+it("testando mapa", () =>{
+  cy.get('#mapa-localizacao')
+
+
+
+    })
+  })
+})
+
+
+
+describe("testando se existe cards no site", () => {
+  it("testando se existe cards no site", () =>{
+    cy.visit("index.html");
+
+    it("testando se existe cards no site", () =>{
+      cy.get('#livros-inicio > :nth-child(5) > .card > .card-body')
+      should('exist')
+
+    })
+
+
+  })
+
+})

@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- VARIÁVEIS DE REFERÊNCIA DO DOM ---
@@ -29,9 +28,22 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // --- ESTADO GLOBAL ---
-    let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+  let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+// Sanitizar preços para garantir que sejam números
+carrinho = carrinho.map(item => {
+    if (typeof item.preco !== 'number') {
+        const parsed = parseFloat(item.preco);
+        if (isNaN(parsed)) {
+            console.warn('Item com preço inválido removido:', item);
+            return null;
+        }
+        return { ...item, preco: parsed };
+    }
+    return item;
+}).filter(Boolean); // Remove itens inválidos
     let livrosAPI = [];
     const toastBootstrap = new bootstrap.Toast(dom.liveToast);
+    let bsCollapseInstance;
 
     // --- UTILS / FUNÇÕES AUXILIARES ---
     function showToast(title, message) {
@@ -42,8 +54,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function fecharMenu() {
         if (window.innerWidth < 992 && dom.navbarCollapse.classList.contains('show')) {
-            const bsCollapse = new bootstrap.Collapse(dom.navbarCollapse, { toggle: false });
-            bsCollapse.hide();
+            if (!bsCollapseInstance) {
+                bsCollapseInstance = new bootstrap.Collapse(dom.navbarCollapse, {
+                    toggle: false
+                });
+            }
+            bsCollapseInstance.hide();
         }
     }
 
@@ -67,17 +83,33 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     function getAgeBlock(age) {
-        let text = '';
-        let color = '';
-        if (age < 10) { text = 'L'; color = ageRatings['L']; } 
-        else if (age >= 10 && age < 12) { text = '10'; color = ageRatings['10']; } 
-        else if (age >= 12 && age < 14) { text = '12'; color = ageRatings['12']; } 
-        else if (age >= 14 && age < 16) { text = '14'; color = ageRatings['14']; } 
-        else if (age >= 16 && age < 18) { text = '16'; color = ageRatings['16']; } 
-        else { text = '18'; color = ageRatings['18']; }
-        return `<span style="background-color: ${color}; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold;">${text}</span>`;
+        let text;
+        let color;
+        if (age < 10) {
+            text = 'L';
+            color = ageRatings['L'];
+        } else if (age < 12) {
+            text = '10';
+            color = ageRatings['10'];
+        } else if (age < 14) {
+            text = '12';
+            color = ageRatings['12'];
+        } else if (age < 16) {
+            text = '14';
+            color = ageRatings['14'];
+        } else if (age < 18) {
+            text = '16';
+            color = ageRatings['16'];
+        } else {
+            text = '18';
+            color = ageRatings['18'];
+        }
+        return {
+            text,
+            color
+        };
     }
-    
+
     // --- LÓGICA DE CONFIGURAÇÃO (TEMA E FONTE) ---
     function applyTheme(themeName) {
         document.body.classList.remove('purple-theme', 'blue-theme', 'rainbow-theme');
@@ -120,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 link.classList.add('active');
             }
         });
-        
+
         switch (pageId) {
             case 'produto':
                 if (bookId) renderizarDetalhesLivro(bookId);
@@ -138,7 +170,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         fecharMenu();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     }
 
     function renderizarEsqueleto(container, count = 8) {
@@ -147,16 +182,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const esqueletoCard = document.createElement('div');
             esqueletoCard.classList.add('col-lg-3', 'col-md-4', 'col-sm-6', 'mb-4');
             esqueletoCard.innerHTML = `
-                <div class="card card-livro h-100 placeholder-glow">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="350" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: " preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#444"></rect></svg>
-                    <div class="card-body">
-                        <h5 class="card-title placeholder col-6"></h5>
-                        <p class="card-text placeholder col-8"></p>
-                        <p class="card-text placeholder col-5"></p>
-                        <a href="#" tabindex="-1" class="btn btn-cta disabled placeholder col-6"></a>
-                    </div>
-                </div>
-            `;
+				<div class="card card-livro h-100 placeholder-glow">
+					<svg class="bd-placeholder-img card-img-top" width="100%" height="350" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: " preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#444"></rect></svg>
+					<div class="card-body">
+						<h5 class="card-title placeholder col-6"></h5>
+						<p class="card-text placeholder col-8"></p>
+						<p class="card-text placeholder col-5"></p>
+						<a href="#" tabindex="-1" class="btn btn-cta disabled placeholder col-6"></a>
+					</div>
+				</div>
+			`;
             container.appendChild(esqueletoCard);
             setTimeout(() => {
                 esqueletoCard.querySelector('.card-livro').classList.add('animated');
@@ -173,32 +208,33 @@ document.addEventListener('DOMContentLoaded', () => {
         livros.forEach((livro, index) => {
             const col = document.createElement('div');
             col.classList.add('col-lg-3', 'col-md-4', 'col-sm-6', 'mb-4');
+            const ageBlock = getAgeBlock(livro.idadeRecomendada);
             col.innerHTML = `
-                <div class="card card-livro h-100" data-book-id="${livro.id}">
-                    <img src="${livro.imagem}" class="card-img-top" alt="${livro.titulo}">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">${livro.titulo}</h5>
-                        <p class="card-text text-muted">${livro.autor}</p>
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="text-warning">
-                                ${renderStars(livro.rating)}
-                                <small class="text-white ms-1">(${livro.rating.toFixed(1)})</small>
-                            </span>
-                            <span class="badge bg-secondary">${livro.genero}</span>
-                        </div>
-                        <div class="mb-2">
-                            ${getAgeBlock(livro.idadeRecomendada)}
-                            <span class="ms-2 small text-secondary">Recomendado para maiores de ${livro.idadeRecomendada}</span>
-                        </div>
-                        <p class="card-text small text-secondary">${livro.descricao.substring(0, 80)}...</p>
-                        <div class="card-price mt-auto">
-                            <span class="price-old">R$ ${livro.preco.toFixed(2)}</span>
-                            <span class="price-new fw-bold">R$ ${livro.precoPromocional.toFixed(2)}</span>
-                        </div>
-                        <button class="btn btn-cta w-100 btn-adicionar-carrinho" data-book-id="${livro.id}" data-price="${livro.precoPromocional.toFixed(2)}">Adicionar ao Carrinho</button>
-                    </div>
-                </div>
-            `;
+				<div class="card card-livro h-100" data-book-id="${livro.id}">
+					<img src="${livro.imagem}" class="card-img-top" alt="${livro.titulo}">
+					<div class="card-body d-flex flex-column">
+						<h5 class="card-title">${livro.titulo}</h5>
+						<p class="card-text text-muted">${livro.autor}</p>
+						<div class="d-flex justify-content-between align-items-center mb-2">
+							<span class="text-warning">
+								${renderStars(livro.rating)}
+								<small class="text-white ms-1">(${livro.rating.toFixed(1)})</small>
+							</span>
+							<span class="badge bg-secondary">${livro.genero}</span>
+						</div>
+						<div class="mb-2">
+							<span style="background-color: ${ageBlock.color}; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold;">${ageBlock.text}</span>
+							<span class="ms-2 small text-secondary">Recomendado para maiores de ${livro.idadeRecomendada}</span>
+						</div>
+						<p class="card-text small text-secondary">${livro.descricao.substring(0, 80)}...</p>
+						<div class="card-price mt-auto">
+							<span class="price-old">R$ ${livro.preco.toFixed(2)}</span>
+							<span class="price-new fw-bold">R$ ${livro.precoPromocional.toFixed(2)}</span>
+						</div>
+						<button class="btn btn-cta w-100 btn-adicionar-carrinho" data-book-id="${livro.id}" data-price="${livro.precoPromocional.toFixed(2)}">Adicionar ao Carrinho</button>
+					</div>
+				</div>
+			`;
             container.appendChild(col);
             setTimeout(() => col.querySelector('.card-livro').classList.add('animated'), index * 100);
         });
@@ -210,36 +246,37 @@ document.addEventListener('DOMContentLoaded', () => {
             dom.detalhesLivro.innerHTML = '<p class="text-center text-secondary">Livro não encontrado.</p>';
             return;
         }
+        const ageBlock = getAgeBlock(livro.idadeRecomendada);
         dom.detalhesLivro.innerHTML = `
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="${livro.imagem}" class="img-fluid rounded-3 shadow-lg" alt="${livro.titulo}">
-                </div>
-                <div class="col-md-8">
-                    <h2 class="text-white">${livro.titulo}</h2>
-                    <h4 class="text-muted">${livro.autor}</h4>
-                    <div class="d-flex align-items-center mb-3">
-                        <span class="me-2">${renderStars(livro.rating)}</span>
-                        <span class="text-white">(${livro.rating.toFixed(1)} de 5)</span>
-                        <span class="badge bg-secondary ms-3">${livro.genero}</span>
-                        <span class="ms-3">
-                            <span style="background-color: ${ageRatings[getAgeBlock(livro.idadeRecomendada).match(/>(\d+|L)</)[1]]}; color: white; padding: 4px 10px; border-radius: 6px; font-size: 1.2em; font-weight: bold;">${getAgeBlock(livro.idadeRecomendada).match(/>(\d+|L)</)[1]}</span>
-                        </span>
-                    </div>
-                    <div class="d-flex align-items-baseline mb-3">
-                        <span class="lead text-primary fw-bold display-6">R$ ${livro.precoPromocional.toFixed(2)}</span>
-                        <span class="text-secondary ms-3 price-old">De: R$ ${livro.preco.toFixed(2)}</span>
-                    </div>
-                    <p class="text-secondary">${livro.descricao}</p>
-                    <button class="btn btn-cta btn-lg mt-3 btn-adicionar-carrinho" data-book-id="${livro.id}" data-price="${livro.precoPromocional.toFixed(2)}">
-                        <i class="fas fa-shopping-cart me-2"></i> Adicionar ao Carrinho
-                    </button>
-                    <button class="btn btn-outline-secondary btn-lg mt-3 ms-2" data-page="catalogo">
-                        <i class="fas fa-arrow-left me-2"></i> Voltar ao Catálogo
-                    </button>
-                </div>
-            </div>
-        `;
+			<div class="row">
+				<div class="col-md-4">
+					<img src="${livro.imagem}" class="img-fluid rounded-3 shadow-lg" alt="${livro.titulo}">
+				</div>
+				<div class="col-md-8">
+					<h2 class="text-white">${livro.titulo}</h2>
+					<h4 class="text-muted">${livro.autor}</h4>
+					<div class="d-flex align-items-center mb-3">
+						<span class="me-2">${renderStars(livro.rating)}</span>
+						<span class="text-white">(${livro.rating.toFixed(1)} de 5)</span>
+						<span class="badge bg-secondary ms-3">${livro.genero}</span>
+						<span class="ms-3">
+							<span style="background-color: ${ageBlock.color}; color: white; padding: 4px 10px; border-radius: 6px; font-size: 1.2em; font-weight: bold;">${ageBlock.text}</span>
+						</span>
+					</div>
+					<div class="d-flex align-items-baseline mb-3">
+						<span class="lead text-primary fw-bold display-6">R$ ${livro.precoPromocional.toFixed(2)}</span>
+						<span class="text-secondary ms-3 price-old">De: R$ ${livro.preco.toFixed(2)}</span>
+					</div>
+					<p class="text-secondary">${livro.descricao}</p>
+					<button class="btn btn-cta btn-lg mt-3 btn-adicionar-carrinho" data-book-id="${livro.id}" data-price="${livro.precoPromocional.toFixed(2)}">
+						<i class="fas fa-shopping-cart me-2"></i> Adicionar ao Carrinho
+					</button>
+					<button class="btn btn-outline-secondary btn-lg mt-3 ms-2" data-page="catalogo">
+						<i class="fas fa-arrow-left me-2"></i> Voltar ao Catálogo
+					</button>
+				</div>
+			</div>
+		`;
     }
 
     // --- LÓGICA DE DATA FETCHING ---
@@ -288,48 +325,56 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    async function fetchAndRenderPopularBooks() {
-        try {
-            const data = await (await fetch(`https://openlibrary.org/search.json?q=popular+fiction&limit=12`)).json();
-            dom.carrosselContainer.innerHTML = '';
-            data.docs.map(item => {
-                const coverId = item.cover_i;
-                const coverUrl = coverId ? `https://covers.openlibrary.org/b/id/${coverId}-M.jpg` : 'https://via.placeholder.com/128x194.png?text=Sem+Capa';
-                const author = item.author_name ? item.author_name.join(', ') : 'Autor Desconhecido';
-                return { id: item.key.split('/').pop(), title: item.title, author: author, cover: coverUrl };
-            }).forEach(book => {
-                dom.carrosselContainer.innerHTML += `
-                    <a href="#" class="card-livro-mini" data-bs-toggle="modal" data-bs-target="#bookDetailsModal" data-book-id="${book.id}">
-                        <img src="${book.cover}" alt="${book.title}" class="img-fluid">
-                        <div class="card-overlay">
-                            <h6>${book.title}</h6>
-                            <p>${book.author}</p>
-                        </div>
-                    </a>
-                `;
-            });
-        } catch (error) {
-            console.error('Erro ao buscar livros populares:', error);
-            dom.carrosselContainer.innerHTML = '<p class="text-center text-muted">Não foi possível carregar os livros. Tente novamente mais tarde.</p>';
-        }
+async function fetchAndRenderPopularBooks() {
+    try {
+        const data = await (await fetch(`https://openlibrary.org/search.json?q=popular+fiction&limit=12`)).json();
+        dom.carrosselContainer.innerHTML = '';
+        data.docs.map(item => {
+            const coverId = item.cover_i;
+            const coverUrl = coverId ? `https://covers.openlibrary.org/b/id/${coverId}-M.jpg` : 'https://via.placeholder.com/128x194.png?text=Sem+Capa';
+            const author = item.author_name ? item.author_name.join(', ') : 'Autor Desconhecido';
+            return {
+                id: `ol-${item.key.replace('/works/', '')}`,
+                title: item.title,
+                author: author,
+                cover: coverUrl
+            };
+        }).forEach(book => {
+            dom.carrosselContainer.innerHTML += `
+                <a href="#" class="card-livro-mini" data-bs-toggle="modal" data-bs-target="#bookDetailsModal" data-book-id="${book.id}">
+                    <img src="${book.cover}" alt="${book.title}" class="img-fluid">
+                    <div class="card-overlay">
+                        <h6>${book.title}</h6>
+                        <p>${book.author}</p>
+                    </div>
+                </a>
+            `;
+        });
+    } catch (error) {
+        console.error('Erro ao buscar livros populares:', error);
+        dom.carrosselContainer.innerHTML = '<p class="text-center text-muted">Não foi possível carregar os livros. Tente novamente mais tarde.</p>';
     }
-    
-    // --- LÓGICA DO CARRINHO E CHECKOUT ---
-    function adicionarAoCarrinho(bookId, preco) {
-        const livro = livrosAPI.find(l => l.id === bookId);
-        if (livro) {
-            const itemExistente = carrinho.find(item => item.id === bookId);
-            if (itemExistente) {
-                itemExistente.quantidade++;
-            } else {
-                carrinho.push({ ...livro, preco: parseFloat(preco), quantidade: 1 });
-            }
-            localStorage.setItem('carrinho', JSON.stringify(carrinho));
-            renderizarCarrinho();
-            showToast('Adicionado ao Carrinho!', `${livro.titulo} foi adicionado com sucesso.`);
-        }
-    }
+}
 
+    function adicionarAoCarrinho(bookId, preco) {
+    const livro = livrosAPI.find(l => l.id === bookId);
+    if (livro) {
+        // 1. Convert the price string from the data-attribute to a number.
+        const precoNumerico = parseFloat(preco); 
+        
+        const itemExistente = carrinho.find(item => item.id === bookId);
+        if (itemExistente) {
+            itemExistente.quantidade++;
+        } else {
+            // 2. Use the numeric price when adding the new item to the cart.
+            // This line correctly overrides the original 'preco' from the book object.
+            carrinho.push({ ...livro, preco: precoNumerico, quantidade: 1 });
+        }
+        localStorage.setItem('carrinho', JSON.stringify(carrinho));
+        renderizarCarrinho();
+        showToast('Adicionado ao Carrinho!', `${livro.titulo} foi adicionado com sucesso.`);
+    }
+}
     function removerDoCarrinho(bookId) {
         carrinho = carrinho.filter(item => item.id !== bookId);
         localStorage.setItem('carrinho', JSON.stringify(carrinho));
@@ -351,16 +396,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const li = document.createElement('li');
             li.classList.add('list-group-item', 'bg-dark', 'text-white', 'carrinho-item');
             li.innerHTML = `
-                <img src="${item.imagem}" alt="${item.titulo}" class="img-fluid rounded me-3">
-                <div class="carrinho-item-info">
-                    <h5 class="mb-1">${item.titulo}</h5>
-                    <small class="text-muted">${item.autor}</small>
-                    <p class="mb-0"><strong>R$ ${item.preco.toFixed(2)}</strong> x ${item.quantidade}</p>
-                </div>
-                <button class="btn btn-remover" data-book-id="${item.id}" aria-label="Remover ${item.titulo}">
-                    <i class="fas fa-trash-alt"></i>
-                </button>
-            `;
+				<img src="${item.imagem}" alt="${item.titulo}" class="img-fluid rounded me-3">
+				<div class="carrinho-item-info">
+					<h5 class="mb-1">${item.titulo}</h5>
+					<small class="text-muted">${item.autor}</small>
+					<p class="mb-0"><strong>R$ ${item.preco.toFixed(2)}</strong> x ${item.quantidade}</p>
+				</div>
+				<button class="btn btn-remover" data-book-id="${item.id}" aria-label="Remover ${item.titulo}">
+					<i class="fas fa-trash-alt"></i>
+				</button>
+			`;
             dom.listaItensCarrinho.appendChild(li);
         });
         dom.carrinhoTotal.textContent = `R$ ${total.toFixed(2)}`;
@@ -374,101 +419,99 @@ document.addEventListener('DOMContentLoaded', () => {
         showPage('home');
         dom.containerPagamento.innerHTML = '';
     }
-    
+
     // --- LÓGICA DO CHECKOUT (CONSTRUÇÃO DOS FORMULÁRIOS) ---
     const formEnderecoHtml = `
-        <h5 class="mb-3 text-white mt-4">Informações de Envio</h5>
-        <form id="form-envio" class="mb-4">
-            <div class="mb-3">
-                <label for="cep" class="form-label">CEP</label>
-                <input type="text" class="form-control form-control-custom" id="cep" placeholder="Ex: 00000-000" required>
-            </div>
-            <div class="mb-3">
-                <label for="endereco" class="form-label">Endereço</label>
-                <input type="text" class="form-control form-control-custom" id="endereco" required>
-            </div>
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="numero" class="form-label">Número</label>
-                    <input type="text" class="form-control form-control-custom" id="numero" required>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="complemento" class="form-label">Complemento</label>
-                    <input type="text" class="form-control form-control-custom" id="complemento">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="cidade" class="form-label">Cidade</label>
-                    <input type="text" class="form-control form-control-custom" id="cidade" required>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="estado" class="form-label">Estado</label>
-   
-
-<input type="text" class="form-control form-control-custom" id="estado" required>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-cta w-100">Confirmar e Pagar</button>
-        </form>
-    `;
+		<h5 class="mb-3 text-white mt-4">Informações de Envio</h5>
+		<form id="form-envio" class="mb-4">
+			<div class="mb-3">
+				<label for="cep" class="form-label">CEP</label>
+				<input type="text" class="form-control form-control-custom" id="cep" placeholder="Ex: 00000-000" required>
+			</div>
+			<div class="mb-3">
+				<label for="endereco" class="form-label">Endereço</label>
+				<input type="text" class="form-control form-control-custom" id="endereco" required>
+			</div>
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					<label for="numero" class="form-label">Número</label>
+					<input type="text" class="form-control form-control-custom" id="numero" required>
+				</div>
+				<div class="col-md-6 mb-3">
+					<label for="complemento" class="form-label">Complemento</label>
+					<input type="text" class="form-control form-control-custom" id="complemento">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					<label for="cidade" class="form-label">Cidade</label>
+					<input type="text" class="form-control form-control-custom" id="cidade" required>
+				</div>
+				<div class="col-md-6 mb-3">
+					<label for="estado" class="form-label">Estado</label>
+					<input type="text" class="form-control form-control-custom" id="estado" required>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-cta w-100">Confirmar e Pagar</button>
+		</form>
+	`;
 
     const formCartaoHtml = `
-        <form id="form-pagamento-cartao">
-            <h5 class="mb-3 text-white">Dados do Cartão</h5>
-            <div class="mb-3">
-                <label for="nome-cartao" class="form-label">Nome no Cartão</label>
-                <input type="text" class="form-control form-control-custom" id="nome-cartao" required>
-            </div>
-            <div class="mb-3">
-                <label for="numero-cartao" class="form-label">Número do Cartão</label>
-                <input type="text" class="form-control form-control-custom" id="numero-cartao" required>
-            </div>
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="validade" class="form-label">Validade</label>
-                    <input type="text" class="form-control form-control-custom" id="validade" placeholder="MM/AA" required>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="cvv" class="form-label">CVV</label>
-                    <input type="text" class="form-control form-control-custom" id="cvv" required>
-                </div>
-            </div>
-        </form>
-    `;
+		<form id="form-pagamento-cartao">
+			<h5 class="mb-3 text-white">Dados do Cartão</h5>
+			<div class="mb-3">
+				<label for="nome-cartao" class="form-label">Nome no Cartão</label>
+				<input type="text" class="form-control form-control-custom" id="nome-cartao" required>
+			</div>
+			<div class="mb-3">
+				<label for="numero-cartao" class="form-label">Número do Cartão</label>
+				<input type="text" class="form-control form-control-custom" id="numero-cartao" required>
+			</div>
+			<div class="row">
+				<div class="col-md-6 mb-3">
+					<label for="validade" class="form-label">Validade</label>
+					<input type="text" class="form-control form-control-custom" id="validade" placeholder="MM/AA" required>
+				</div>
+				<div class="col-md-6 mb-3">
+					<label for="cvv" class="form-label">CVV</label>
+					<input type="text" class="form-control form-control-custom" id="cvv" required>
+				</div>
+			</div>
+		</form>
+	`;
 
     const formPixHtml = `
-        <div id="info-pix">
-            <h5 class="mb-3 text-white">Pagar com PIX</h5>
-            <p class="text-center text-muted">Aponte a câmera do seu celular para o QR Code abaixo ou utilize o código Copia e Cola para pagar.</p>
-            <div class="d-flex flex-column align-items-center mb-4">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=ChavePix-LivrariaElite-ID-2025" alt="QR Code PIX" class="mb-3">
-                <p class="fw-bold">Valor: <span id="pix-valor-total">R$ 0,00</span></p>
-            </div>
-            <div class="mb-3">
-                <label for="pix-code" class="form-label">Código PIX Copia e Cola</label>
-                <div class="input-group">
-                    <textarea id="pix-code" class="form-control form-control-custom pix-code-container" rows="3" readonly>asdfgHJKLKJHGfdsaLKJHGfdsasdfghJHGfdsasdfghjklÇKJHGfdsaKLJHGfdsasdfghjklÇlkjhgfdsasdfghjklçkjhgfdsasdfghjklçasdfghjklç</textarea>
-                    <button class="btn btn-copy-pix" type="button" id="btn-copy-pix" aria-label="Copiar código PIX">
-                        <i class="fas fa-copy"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    `;
+		<div id="info-pix">
+			<h5 class="mb-3 text-white">Pagar com PIX</h5>
+			<p class="text-center text-muted">Aponte a câmera do seu celular para o QR Code abaixo ou utilize o código Copia e Cola para pagar.</p>
+			<div class="d-flex flex-column align-items-center mb-4">
+				<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=ChavePix-LivrariaElite-ID-2025" alt="QR Code PIX" class="mb-3">
+				<p class="fw-bold">Valor: <span id="pix-valor-total">R$ 0,00</span></p>
+			</div>
+			<div class="mb-3">
+				<label for="pix-code" class="form-label">Código PIX Copia e Cola</label>
+				<div class="input-group">
+					<textarea id="pix-code" class="form-control form-control-custom pix-code-container" rows="3" readonly>asdfgHJKLKJHGfdsaLKJHGfdsasdfghJHGfdsasdfghjklÇKJHGfdsaKLJHGfdsasdfghjklÇlkjhgfdsasdfghjklçkjhgfdsasdfghjklçasdfghjklç</textarea>
+					<button class="btn btn-copy-pix" type="button" id="btn-copy-pix" aria-label="Copiar código PIX">
+						<i class="fas fa-copy"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	`;
 
     const formBoletoHtml = `
-        <div id="info-boleto">
-            <h5 class="mb-3 text-white">Pagar com Boleto</h5>
-            <p class="text-center text-muted">O boleto será gerado após a confirmação do endereço de entrega. Você poderá imprimir ou pagar online.</p>
-            <p class="text-center text-muted">O prazo para pagamento é de 3 dias úteis.</p>
-        </div>
-    `;
+		<div id="info-boleto">
+			<h5 class="mb-3 text-white">Pagar com Boleto</h5>
+			<p class="text-center text-muted">O boleto será gerado após a confirmação do endereço de entrega. Você poderá imprimir ou pagar online.</p>
+			<p class="text-center text-muted">O prazo para pagamento é de 3 dias úteis.</p>
+		</div>
+	`;
 
     function showCheckoutSteps(method) {
         dom.containerPagamento.innerHTML = '';
         let formSpecific = '';
-        
+
         switch (method) {
             case 'cartao':
                 formSpecific = formCartaoHtml;
@@ -480,13 +523,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 formSpecific = formBoletoHtml;
                 break;
         }
-        
+
         dom.containerPagamento.innerHTML = formSpecific + formEnderecoHtml;
-        
+
         if (method === 'pix') {
             const totalCarrinho = carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0);
             document.getElementById('pix-valor-total').textContent = `R$ ${totalCarrinho.toFixed(2)}`;
-            
+
             document.getElementById('btn-copy-pix').addEventListener('click', () => {
                 const pixCode = document.getElementById('pix-code');
                 pixCode.select();
@@ -494,7 +537,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 showToast('Código Copiado!', 'O código PIX foi copiado para a área de transferência.');
             });
         }
-        
+
         document.getElementById('form-envio').addEventListener('submit', (e) => {
             e.preventDefault();
             finalizarCompra(method);
@@ -520,7 +563,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const bookCard = e.target.closest('.card-livro');
             const btnAddCarrinho = e.target.closest('.btn-adicionar-carrinho');
             const btnRemover = e.target.closest('.btn-remover');
-            
+
             if (target) {
                 e.preventDefault();
                 showPage(target.getAttribute('data-page'));
@@ -547,7 +590,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 buscarLivros(query);
             }
         });
-        
+
         dom.genreItems.forEach(item => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -579,7 +622,7 @@ document.addEventListener('DOMContentLoaded', () => {
         dom.fontButtons.forEach(button => {
             button.addEventListener('click', () => applyFontSize(button.getAttribute('data-font')));
         });
-        
+
         // Sincronizar seletores de tema (se existirem)
         const themeSelectors = document.querySelectorAll('#themeSelector, #themeSelectorOffcanvas');
         themeSelectors.forEach(selector => {
@@ -605,11 +648,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }, {
         threshold: 0.2
     });
-    
+
     function observeCards() {
         document.querySelectorAll('.card-livro').forEach(card => cardObserver.observe(card));
     }
-    
+
     // --- FUNÇÃO DE INICIALIZAÇÃO ---
     function init() {
         loadSettings();
@@ -629,6 +672,153 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+// Adicione esta função para inicializar o mapa
+function initMap() {
+    // Coordenadas da sua loja (substitua por sua lat e lng)
+    const localidade = { lat: -23.55052, lng: -46.633308 }; // Exemplo: São Paulo
 
+    // Cria uma nova instância do mapa
+    const mapa = new google.maps.Map(document.getElementById("mapa-localizacao"), {
+        zoom: 15,
+        center: localidade,
+    });
 
+    // Adiciona um marcador (pin) no mapa
+    new google.maps.Marker({
+        position: localidade,
+        map: mapa,
+        title: "Livraria Elite"
+    });
+}
 
+// This code goes inside your script.js file
+
+// The window.onload event ensures the script runs only after the entire page has loaded,
+// including the 'mapa-localizacao' div.
+window.onload = function() {
+    // Check if the map container element exists before trying to create a map
+    const mapElement = document.getElementById('mapa-localizacao');
+    if (mapElement) {
+        // Create a new map instance
+        const map = new ol.Map({
+            // Target the HTML element where the map will be rendered
+            target: 'mapa-localizacao',
+
+            // Define the map's layers (in this case, OpenStreetMap)
+            layers: [
+                new ol.layer.Tile({
+                    source: new ol.source.OSM() // Using the OpenStreetMap tile source
+                })
+            ],
+
+            // Define the initial view of the map
+            view: new ol.View({
+                // The center coordinates. OpenLayers uses [longitude, latitude].
+                // This example uses the coordinates for Porto Alegre, Brazil.
+                // You'll need to transform these to the map's projection (EPSG:3857).
+                center: ol.proj.fromLonLat([-51.2177, -30.0346]),
+
+                // The initial zoom level
+                zoom: 12
+            })
+        });
+    }
+};
+
+/**
+ * @file settings-script.js
+ * @description Gerencia a lógica do menu de configurações, permitindo ao usuário
+ * alterar o tema visual e o tamanho da fonte do site, salvando as preferências
+ * no localStorage para persistência entre as visitas.
+ */
+
+// Executa o script apenas quando o DOM estiver completamente carregado.
+document.addEventListener('DOMContentLoaded', () => {
+
+  // --- Seletores do DOM ---
+  // Obtém referências para os botões de controle no menu de configurações.
+  const themeButtons = document.querySelectorAll('#offcanvasSettings [data-theme]');
+  const fontButtons = document.querySelectorAll('#offcanvasSettings [data-font]');
+
+  /**
+   * Aplica um tema visual ao corpo do documento.
+   * @param {string} themeName - O nome do tema a ser aplicado (ex: 'purple', 'blue').
+   */
+  const applyTheme = (themeName) => {
+    // 1. Limpa temas anteriores: Remove qualquer classe que termine com '-theme'.
+    document.body.className = document.body.className.replace(/\b\w+-theme\b/g, '').trim();
+
+    // 2. Adiciona o novo tema, se não for o padrão.
+    if (themeName !== 'default') {
+      document.body.classList.add(`${themeName}-theme`);
+    }
+
+    // 3. Salva a preferência no localStorage.
+    localStorage.setItem('selectedTheme', themeName);
+
+    // 4. Atualiza o estado 'active' nos botões para feedback visual.
+    updateButtonActiveState(themeButtons, 'theme', themeName);
+  };
+
+  /**
+   * Aplica o tamanho da fonte ao corpo do documento.
+   * @param {string} fontSize - O tamanho da fonte ('normal' ou 'large').
+   */
+  const applyFontSize = (fontSize) => {
+    // 1. Usa 'toggle' para adicionar/remover a classe 'large-font' de forma eficiente.
+    document.body.classList.toggle('large-font', fontSize === 'large');
+
+    // 2. Salva a preferência no localStorage.
+    localStorage.setItem('selectedFontSize', fontSize);
+    
+    // 3. Atualiza o estado 'active' nos botões.
+    updateButtonActiveState(fontButtons, 'font', fontSize);
+  };
+
+  /**
+   * Atualiza a classe 'active' em um grupo de botões.
+   * @param {NodeListOf<Element>} buttons - A lista de botões a ser atualizada.
+   * @param {string} datasetKey - A chave do dataset a ser comparada (ex: 'theme' ou 'font').
+   * @param {string} activeValue - O valor que deve corresponder para o botão ser ativo.
+   */
+  const updateButtonActiveState = (buttons, datasetKey, activeValue) => {
+    buttons.forEach(button => {
+      button.classList.toggle('active', button.dataset[datasetKey] === activeValue);
+    });
+  };
+
+  /**
+   * Carrega as configurações salvas do localStorage quando a página inicia.
+   */
+  const loadSettings = () => {
+    // Carrega o tema salvo ou usa 'default' como padrão.
+    const savedTheme = localStorage.getItem('selectedTheme') || 'default';
+    
+    // Carrega o tamanho da fonte salvo ou usa 'normal' como padrão.
+    const savedFontSize = localStorage.getItem('selectedFontSize') || 'normal';
+
+    applyTheme(savedTheme);
+    applyFontSize(savedFontSize);
+  };
+
+  // --- Inicialização dos Event Listeners ---
+
+  // Adiciona um listener de clique para cada botão de tema.
+  themeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      applyTheme(button.dataset.theme);
+    });
+  });
+
+  // Adiciona um listener de clique para cada botão de fonte.
+  fontButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      applyFontSize(button.dataset.font);
+    });
+  });
+
+  // --- Ponto de Entrada ---
+  // Carrega as configurações do usuário assim que o script é executado.
+  loadSettings();
+
+});

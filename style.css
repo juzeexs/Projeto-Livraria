@@ -4,6 +4,7 @@
     100% { background-position: 0% 50%; }
 }
 
+
 @keyframes rainbowThemeChange {
     0% { background-position: 0% 50%; }
     25% { background-position: 50% 100%; }
@@ -39,16 +40,17 @@
     }
 }
 
-@keyframes slideInRight {
-    from {
-        opacity: 0;
+@keyframes slideInFromRight {
+    0% {
         transform: translateX(100%);
+        opacity: 0;
     }
-    to {
-        opacity: 1;
+    100% {
         transform: translateX(0);
+        opacity: 1;
     }
 }
+
 
 @keyframes glowPulse {
     0% {
@@ -242,7 +244,6 @@ body {
     background-color: var(--cor-secundaria);
     border-bottom: 2px solid var(--cor-principal);
     padding: 20px 25px;
-    border-top-left-radius: 20px;
     transition: background-color 0.5s ease, border-color 0.5s ease;
 }
 
@@ -476,27 +477,25 @@ body {
 
 .card-livro {
     background-color: var(--cor-secundaria);
-    border: none;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(0, 0, 0, 0.2);
+    border: 1.5px solid var(--cor-principal);
     overflow: hidden;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     color: #ffffff;
-    border-radius: 15px; /* Adiciona border-radius para consistência */
+    border-radius: 15px;
 }
 
 .card-livro:hover {
     transform: translateY(-12px);
-    box-shadow: 0 15px 40px rgba(var(--cor-sombra-hover-rgb), 0.6), 
-    0 0 20px rgba(var(--cor-principal-rgb), 0.4);
+    border-color: rgb(0, 255, 255);
 }
 
 .card-livro img {
-    height: 350px; /* Altura fixa para a imagem */
-    object-fit: cover; /* Garante que a imagem preencha a área sem distorcer */
+    height: 350px;
+    object-fit: cover;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
@@ -875,7 +874,22 @@ border-radius: 10px;
     } 
 }
 
-/* Estilos para o novo carrossel horizontal de livros da API */
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.animated-heading {
+    opacity: 0;
+    animation: slideInFromRight 1s ease-out forwards;
+}
+
 .carrossel-livros-api {
     display: flex;
     overflow-x: auto;
@@ -884,6 +898,7 @@ border-radius: 10px;
     gap: 1rem;
     padding-bottom: 1rem;
     border-radius: 10px;
+    animation: slideInFromRight 1s ease-out forwards 0.5s;
 }
 
 .carrossel-livros-api::-webkit-scrollbar {
@@ -963,3 +978,237 @@ hr{
     transition: background 0.5s ease;
     border-radius: 3px;
 }
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.animated-heading-title{
+    opacity: 0;
+    animation: slideInFromRight 1s ease-out forwards;
+    text-align: center;
+}
+
+.animated-subtitle {
+  opacity: 0;
+  animation: slideInFromRight 1s ease-out forwards 0.2s, colorChange 3s infinite alternate;
+}
+
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.titulo-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.animated-highlight-title {
+    opacity: 0;
+    animation: slideInFromLeft 1s ease-out forwards;
+}
+
+.map-container {
+    height: 400px;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 3px solid transparent;
+    background: var(--cor-fundo-transicao) border-box;
+    background-size: 400% 400%;
+    animation: rainbowThemeChange 10s ease infinite;
+    border-image-slice: 1;
+    transition: height 0.6s ease-in-out;
+}
+
+.offcanvas {
+    border-radius: 0;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    background-color: var(--cor-fundo);
+    transition: background-color 0.5s ease;
+}
+
+.offcanvas-header {
+    background-color: var(--cor-secundaria);
+    border-bottom: 2px solid var(--cor-principal);
+    padding: 20px 25px;
+    transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+
+.offcanvas-header .offcanvas-title {
+    color: var(--cor-principal);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.offcanvas-header .btn-close {
+    filter: invert(1);
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.offcanvas-header .btn-close:hover {
+    opacity: 1;
+}
+
+.offcanvas .btn-outline-secondary {
+    border: 2px solid var(--cor-texto-secundario);
+    color: var(--cor-texto-secundario);
+    transition: all 0.3s ease;
+}
+
+.offcanvas .btn-outline-secondary:hover {
+    border-color: var(--cor-principal);
+    color: var(--cor-principal);
+    background-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.offcanvas .btn-outline-secondary[data-theme="default"]:hover {
+    color: var(--cor-principal);
+    border-color: var(--cor-principal);
+}
+
+.offcanvas .btn-outline-secondary[data-theme="purple"]:hover {
+    color: #9932cc;
+    border-color: #9932cc;
+}
+
+.offcanvas .btn-outline-secondary[data-theme="blue"]:hover {
+    color: #0084c2;
+    border-color: #0084c2;
+}
+
+.offcanvas .btn-outline-secondary[data-font="normal"]:hover {
+    color: var(--cor-principal);
+    border-color: var(--cor-principal);
+}
+
+.offcanvas .btn-outline-secondary[data-font="large"]:hover {
+    color: var(--cor-principal);
+    border-color: var(--cor-principal);
+}
+
+h5{
+    text-align: center;
+}
+
+/* --- Estilização do Offcanvas de Configurações --- */
+.offcanvas {
+    border-radius: 0; /* Remove todas as bordas arredondadas */
+    background-color: var(--cor-fundo); /* Usa a cor de fundo do seu tema */
+    transition: background-color 0.5s ease;
+}
+
+.offcanvas-header {
+    background-color: var(--cor-secundaria); /* Usa a cor secundária do seu tema */
+    border-bottom: 2px solid var(--cor-principal); /* Adiciona uma linha de separação */
+    padding: 20px 25px;
+    transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+
+.offcanvas-header .offcanvas-title {
+    color: var(--cor-principal); /* Usa a cor principal para o título */
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.offcanvas-header .btn-close {
+    filter: invert(1);
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.offcanvas-header .btn-close:hover {
+    opacity: 1;
+}
+
+/* --- Estilização dos Botões de Configuração --- */
+.offcanvas .btn-outline-secondary {
+    border: 2px solid var(--cor-texto-secundario);
+    color: var(--cor-texto-secundario);
+    transition: all 0.3s ease;
+}
+
+.offcanvas .btn-outline-secondary:hover {
+    border-color: var(--cor-principal);
+    color: var(--cor-principal);
+    background-color: transparent;
+    transform: translateY(-2px);
+}
+
+.offcanvas .btn-outline-secondary[data-theme="default"]:hover {
+    color: var(--cor-principal);
+    border-color: var(--cor-principal);
+}
+
+.offcanvas .btn-outline-secondary[data-theme="purple"]:hover {
+    color: #9932cc;
+    border-color: #9932cc;
+}
+
+.offcanvas .btn-outline-secondary[data-theme="blue"]:hover {
+    color: #0084c2;
+    border-color: #0084c2;
+}
+
+.offcanvas .btn-outline-secondary[data-font="normal"]:hover {
+    color: var(--cor-principal);
+    border-color: var(--cor-principal);
+}
+
+.offcanvas .btn-outline-secondary[data-font="large"]:hover {
+    color: var(--cor-principal);
+    border-color: var(--cor-principal);
+}
+
+/* ============================================= */
+/* ==   ANIMAÇÃO DE ENTRADA DO OFF-CANVAS     == */
+/* ============================================= */
+
+/* --- 1. Animação do Painel Principal --- */
+
+/* Define o estado inicial do offcanvas (fora da tela, à direita) */
+.offcanvas-end {
+    transform: translateX(100%);
+    visibility: hidden;
+    transition: transform 0.3s ease-in-out, visibility 0.2s;
+}
+
+/* Define o estado final (visível na tela) quando a classe .show é adicionada */
+.offcanvas-end.show {
+    transform: translateX(0);
+    visibility: visible;
+}
+
+/* --- 2. Animação em Cascata dos Itens Internos --- */
+
+/* Define a animação que faz os itens surgirem de baixo para cima 

@@ -7,7 +7,8 @@
     <meta name="theme-color" content="#212529">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v10.6.0/ol.css">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -84,11 +85,13 @@
 <main class="container my-5">
     <div id="home" class="page-section active">
         <section class="text-center mb-5 animated-section">
-            <h1 class="display-3 text-white">Descubra as Melhores Histórias</h1>
-            <p class="subtitulo">Uma seleção de títulos de alta qualidade, escolhidos para você.</p>
+            <h1 class="animated-heading">Descubra as Melhores Histórias</h1>
+            <p class="animated-subtitle">Uma seleção de títulos de alta qualidade, escolhidos para você.</p>
         </section>
         <section id="livros-destaque" class="mb-5 animated-section">
-            <h2 class="text-center mb-4 text-white">Lançamentos em Destaque</h2>
+            <div class="titulo-container">
+              <h2 class="animated-highlight-title">Lançamentos em Destaque</h2>
+            </div>
             <div id="carrosselDestaques" class="carousel slide animated-section" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carrosselDestaques" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -379,6 +382,11 @@
             <div class="col-md-3 text-center text-md-start" id="footer-contact-column">
                 <h5 class="mb-3">Contato & Pagamento</h5>
                 <p class="text-muted small"><i class="fas fa-map-marker-alt me-2"></i> Rua Fictícia, 123 - Centro, Porto Alegre - RS, Brasil</p>
+    <div class="container">
+        <div class="row">
+            </div>
+    </div>
+
                 <p class="text-muted small"><i class="fas fa-envelope me-2"></i> contato@livrariaelite.com</p>
                 <p class="text-muted small"><i class="fas fa-phone me-2"></i> (51) 98925-1530</p>
                 <h6 class="mt-4 mb-3 text-white">Formas de Pagamento</h6>
@@ -390,7 +398,14 @@
                 </div>
             </div>
         </div>
+        
+<div class="col-md-6 mb-4 d-flex flex-column align-items-center">
+    <h5>Nossa Localização</h5>
+    <div id="mapa-localizacao" class="map-container"></div>
+</div>
+        
         <hr class="my-5 border-secondary">
+        
         <div class="row align-items-center">
             <div class="titulo">
                 <p class="text-white-50 mb-0">© <span id="current-year"></span> Livraria Elite. Todos os direitos reservados.</p>
@@ -471,6 +486,7 @@
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script class ="map-container" src="https://cdn.jsdelivr.net/npm/ol@v10.6.0/dist/ol.js"></script>   <!--API do Mapa-->
 <script src="script.js"></script>
 </body>
 </html>
