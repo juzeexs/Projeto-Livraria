@@ -123,4 +123,4 @@ Link do nosso site:
 </strong>
 <br>
 <br>
-https://projeto-livraria.netlify.app/
+https://livraria-elite.netlify.app/
