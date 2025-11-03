@@ -1121,22 +1121,21 @@ h5{
     text-align: center;
 }
 
-/* --- Estilização do Offcanvas de Configurações --- */
 .offcanvas {
-    border-radius: 0; /* Remove todas as bordas arredondadas */
-    background-color: var(--cor-fundo); /* Usa a cor de fundo do seu tema */
+    border-radius: 0;
+    background-color: var(--cor-fundo);
     transition: background-color 0.5s ease;
 }
 
 .offcanvas-header {
-    background-color: var(--cor-secundaria); /* Usa a cor secundária do seu tema */
-    border-bottom: 2px solid var(--cor-principal); /* Adiciona uma linha de separação */
+    background-color: var(--cor-secundaria);
+    border-bottom: 2px solid var(--cor-principal);
     padding: 20px 25px;
     transition: background-color 0.5s ease, border-color 0.5s ease;
 }
 
 .offcanvas-header .offcanvas-title {
-    color: var(--cor-principal); /* Usa a cor principal para o título */
+    color: var(--cor-principal);
     font-size: 1.5rem;
     font-weight: 700;
 }
@@ -1151,7 +1150,6 @@ h5{
     opacity: 1;
 }
 
-/* --- Estilização dos Botões de Configuração --- */
 .offcanvas .btn-outline-secondary {
     border: 2px solid var(--cor-texto-secundario);
     color: var(--cor-texto-secundario);
@@ -1190,25 +1188,14 @@ h5{
     border-color: var(--cor-principal);
 }
 
-/* ============================================= */
-/* ==   ANIMAÇÃO DE ENTRADA DO OFF-CANVAS     == */
-/* ============================================= */
 
-/* --- 1. Animação do Painel Principal --- */
-
-/* Define o estado inicial do offcanvas (fora da tela, à direita) */
 .offcanvas-end {
     transform: translateX(100%);
     visibility: hidden;
     transition: transform 0.3s ease-in-out, visibility 0.2s;
 }
 
-/* Define o estado final (visível na tela) quando a classe .show é adicionada */
 .offcanvas-end.show {
     transform: translateX(0);
     visibility: visible;
 }
-
-/* --- 2. Animação em Cascata dos Itens Internos --- */
-
-/* Define a animação que faz os itens surgirem de baixo para cima 
